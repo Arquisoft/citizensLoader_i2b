@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @EnableAutoConfiguration
+@SpringBootApplication
 public class SampleController implements CommandLineRunner {
 
+    @SuppressWarnings("SpringAutowiredFieldsWarningInspection")
     @Autowired
     private CitizenRepository repository;
 
