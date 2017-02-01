@@ -1,34 +1,16 @@
 package es.uniovi.asw;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.*;
-import org.springframework.boot.autoconfigure.*;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@EnableAutoConfiguration
-@SpringBootApplication
-public class SampleController implements CommandLineRunner {
-
-    @SuppressWarnings("SpringAutowiredFieldsWarningInspection")
-    @Autowired
-    private CitizenRepository repository;
+public class SampleController  {
 
     @RequestMapping("/")
-    @ResponseBody
-    String home() {
-        return "Hello World!";
-    }
-
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(SampleController.class, args);
-    }
-
-
-    @Override
-    public void run(String... strings) throws Exception {
-        System.out.println("Run");
-        repository.save(new Citizen("Jorge", "Lópezz"));
+    ModelAndView home() {
+        ModelAndView mav = new ModelAndView("index");
+        mav.addObject("text", "Hello world");
+        return mav;
     }
 }

@@ -7,9 +7,19 @@
 
 Skeleton of Citizens Loader module
 
+## Configure IntelliJ
+Once you import the Maven proyect, you have to do the following to activite IntelliJ support for Spring:
+
+ * Right click on the proyect root foolder and select **Add framework support...**
+ * In the window that opens, select Spring and in the center choose **Set up the library later**. Then press **OK**.
+ * Know go the SampleController class. There is a warning in the class name. Use control+Enter and fix it. 
+ It will open a new window but you have to change nothing.
+ 
+# Team members
+Nicolás Pascual González (@nicolaspascual)
+Jorge López Fueyo
+
 # Authors
 
 Herminio García González (@herminiogg)
 Jose Emilio Labra Gayo (@labra)
-Nicolás Pascual González (@nicolaspascual)
-Jorge
