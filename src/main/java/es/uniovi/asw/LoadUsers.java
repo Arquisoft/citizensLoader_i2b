@@ -1,6 +1,11 @@
 package es.uniovi.asw;
 
-import java.util.logging.Logger;
+import es.uniovi.asw.user.User;
+import es.uniovi.asw.parser.Parser;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
 
 /**
  * Main application
@@ -16,7 +21,16 @@ public class LoadUsers {
 	}
 
 	// TODO
-	void run(String... args) {
-		System.out.println("TODO");
+	void run(String... args){
+		if(args.length == 1){
+			Parser parser = new Parser();
+			try {
+				List<User> users  = parser.loadData(args[0]);
+				for(User user :users)
+					System.out.println(user);
+			} catch (IOException e) {e.printStackTrace();} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
