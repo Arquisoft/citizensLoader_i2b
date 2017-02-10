@@ -1,4 +1,4 @@
-package es.uniovi.asw;
+package main.asw;
 
 /**
  * Simplest calculator class
