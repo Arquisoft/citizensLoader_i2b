@@ -27,14 +27,15 @@ public class Parser {
 
 
     public List<User> loadData() throws IOException, ParseException {
-        List<User> users = new ArrayList<User>();
+        List<User> users = new ArrayList<>();
 
-        while(dataSource.nextRow()){
-            if(dataSource.getNumberOfColumns() == 7)
+        while (dataSource.nextRow()) {
+            if (dataSource.getNumberOfColumns() == 7) {
                 users.add(rowToUser());
-            else
+            } else {
                 throw new ParseException("Error reading line " + dataSource.toString() +
-                        " the number of columns is different than expected",dataSource.getCurrentRow());
+                        " the number of columns is different than expected", dataSource.getCurrentRow());
+            }
 
         }
         return users;
@@ -49,8 +50,10 @@ public class Parser {
 
         try {
             date = parseDate(birthDateString);
-        } catch (ParseException e) {throw new ParseException("Error with the date in " + dataSource.toString() +
-                " it must be in American Format MM/DD/YYYY",dataSource.getCurrentRow()); }
+        } catch (ParseException e) {
+            throw new ParseException("Error with the date in " + dataSource.toString() +
+                    " it must be in American Format MM/DD/YYYY", dataSource.getCurrentRow());
+        }
         String address = dataSource.getCell(4);
         String nationality = dataSource.getCell(5);
         String dni = dataSource.getCell(6);
@@ -68,11 +71,11 @@ public class Parser {
     private Date parseDate(String birthDateString) throws ParseException {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         Date date;
-        if(!birthDateString.matches("[1-9][0-9]?/[1-9][0-9]?/[1|2][9|0][0-9][0-9]")) throw new ParseException("",0);
+        if (!birthDateString.matches("[1-9][0-9]?/[1-9][0-9]?/[1|2][9|0][0-9][0-9]")) {
+            throw new ParseException("", 0);
+        }
         date = df.parse(birthDateString);
         return date;
     }
-
-
 
 }

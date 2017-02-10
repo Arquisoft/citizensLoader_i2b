@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ApachePoiDataContainer implements CellLikeDataContainer {
 
     private int numberOfRows = -1, numberOfColumns = -1,
-                        currentRow = -1, currentSheet = 0;
+            currentRow = -1, currentSheet = 0;
 
     HSSFWorkbook wb;
 
@@ -23,45 +23,48 @@ public class ApachePoiDataContainer implements CellLikeDataContainer {
     @Override
     public int getNumberOfRows() {
         //Needs to be calculated
-        if(numberOfRows==-1) calculateNumberOfRows();
+        if (numberOfRows == -1) {
+            calculateNumberOfRows();
+        }
         return this.numberOfRows;
     }
 
     @Override
     public int getNumberOfColumns() {
         //NeedsToBeCalculated
-        if(numberOfColumns == -1)calculateNumberOfColumns();
+        if (numberOfColumns == -1) {
+            calculateNumberOfColumns();
+        }
         return numberOfColumns;
     }
 
     private void calculateNumberOfColumns() {
-        this. numberOfColumns = wb.getSheetAt(currentSheet)
+        this.numberOfColumns = wb.getSheetAt(currentSheet)
                 .getRow(currentRow)
                 .getPhysicalNumberOfCells();
     }
 
     private void calculateNumberOfRows() {
         int numberOfRows = 0;
-        for (int k = 0; k < wb.getNumberOfSheets(); k++)
+        for (int k = 0; k < wb.getNumberOfSheets(); k++) {
             numberOfColumns += wb.getSheetAt(k).getPhysicalNumberOfRows();
+        }
         this.numberOfRows = numberOfRows;
     }
 
     @Override
     public boolean nextRow() throws IOException {
         boolean res = false;
-        if(currentRow+1<wb.getSheetAt(currentSheet).getPhysicalNumberOfRows()) {
+        if (currentRow + 1 < wb.getSheetAt(currentSheet).getPhysicalNumberOfRows()) {
             currentRow++;
             res = true;
             calculateNumberOfColumns();
-        }
-        else if(currentSheet+1 < wb.getNumberOfSheets()){
-            currentSheet ++;
+        } else if (currentSheet + 1 < wb.getNumberOfSheets()) {
+            currentSheet++;
             currentRow = 0;
-            res =  true;
+            res = true;
             calculateNumberOfColumns();
-        }
-        else{
+        } else {
             wb.close();
             res = false;
         }
@@ -70,13 +73,14 @@ public class ApachePoiDataContainer implements CellLikeDataContainer {
 
     @Override
     public String getCell(int index) {
-        if(index < getNumberOfColumns())
+        if (index < getNumberOfColumns()) {
             return wb.getSheetAt(currentSheet)
                     .getRow(currentRow)
                     .getCell(index)
                     .getStringCellValue();
-        else
+        } else {
             throw new IllegalArgumentException("The index is out of range");
+        }
     }
 
     @Override
@@ -86,7 +90,7 @@ public class ApachePoiDataContainer implements CellLikeDataContainer {
 
     @Override
     public String toString() {
-        return "Sheet: "+ currentSheet + "Row: "+ currentRow;
+        return "Sheet: " + currentSheet + "Row: " + currentRow;
     }
 
     private HSSFWorkbook readFile(String filename) throws IOException {

@@ -7,26 +7,24 @@ import java.io.IOException;
  */
 public interface CellLikeDataContainer {
 
-
     /**
      * Return the number of Rows in the working file
+     *
      * @return number of rows of the file
      */
-    public int getNumberOfRows();
+    int getNumberOfRows();
 
     /**
      * Return the number of columns in the current Row
+     *
      * @return number of Columns of the Row
      */
-    public int getNumberOfColumns();
+    int getNumberOfColumns();
+
+    boolean nextRow() throws IOException;
 
 
-
-
-    public boolean nextRow() throws IOException;
-
-
-    public String getCell(int index);
+    String getCell(int index);
 
     int getCurrentRow();
 }
