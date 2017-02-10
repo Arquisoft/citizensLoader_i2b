@@ -1,4 +1,4 @@
-package es.uniovi.asw;
+package main.asw;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;

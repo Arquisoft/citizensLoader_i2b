@@ -1,4 +1,4 @@
-package es.uniovi.asw.user;
+package main.asw.user;
 
 import java.util.Date;
 

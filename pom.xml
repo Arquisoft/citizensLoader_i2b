@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>es.uniovi.asw</groupId>
+	<groupId>main.asw</groupId>
 	<artifactId>citizensLoader0</artifactId>
 	<version>0.0.1</version>
 	<name>citizensLoader0</name>
@@ -150,7 +150,7 @@
 					<!-- MainClass in mainfest make a executable jar -->
 					<archive>
 						<manifest>
-							<mainClass>es.uniovi.asw.LoadUsers</mainClass>
+							<mainClass>main.asw.LoadUsers</mainClass>
 						</manifest>
 					</archive>
 

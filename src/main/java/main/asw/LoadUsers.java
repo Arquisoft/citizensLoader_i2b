@@ -1,7 +1,7 @@
-package es.uniovi.asw;
+package main.asw;
 
-import es.uniovi.asw.user.User;
-import es.uniovi.asw.parser.Parser;
+import main.asw.user.User;
+import main.asw.parser.Parser;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -20,12 +20,12 @@ public class LoadUsers {
 		runner.run(args);
 	}
 
-	// TODO
+
 	void run(String... args){
 		if(args.length == 1){
-			Parser parser = new Parser();
 			try {
-				List<User> users  = parser.loadData(args[0]);
+				Parser parser = new Parser(args[0]);
+				List<User> users  = parser.loadData();
 				for(User user :users)
 					System.out.println(user);
 			} catch (IOException e) {e.printStackTrace();} catch (ParseException e) {
