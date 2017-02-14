@@ -1,4 +1,4 @@
-package es.uniovi.asw;
+package main.asw;
 
 import org.junit.Before;
 import org.junit.Test;
