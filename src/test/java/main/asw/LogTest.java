@@ -1,12 +1,14 @@
-package es.uniovi.asw;
+package main.asw;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * @author nokutu
@@ -24,8 +26,6 @@ public class LogTest {
 
     @Test
     public void writeTest() {
-        File f = new File("./test.log");
-        assert !f.exists();
 
         Logger log = LoggerFactory.getLogger(getClass());
         String message = String.valueOf(Math.random());
@@ -33,10 +33,9 @@ public class LogTest {
         log.debug(message);
         log.error("bnbbbb");
 
-        assert f.exists();
-
         BufferedReader br = null;
         try {
+            File f = new File("./test.log");
             br = new BufferedReader(new FileReader(f));
             boolean contained = false;
             String line;
@@ -47,8 +46,6 @@ public class LogTest {
                 }
             }
             assert contained;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
