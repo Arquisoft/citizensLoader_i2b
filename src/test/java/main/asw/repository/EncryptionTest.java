@@ -1,4 +1,4 @@
-package es.uniovi.asw;
+package main.asw.repository;
 
 import main.asw.encryption.EncryptionUtils;
 import org.junit.Before;
