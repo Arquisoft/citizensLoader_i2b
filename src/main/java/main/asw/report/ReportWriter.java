@@ -7,7 +7,6 @@ public interface ReportWriter {
 
     /**
      * Writes the report into the file system.
-     * TODO: add parameters
      */
-    void writeReport();
+    void writeReport(String filename, String content);
 }

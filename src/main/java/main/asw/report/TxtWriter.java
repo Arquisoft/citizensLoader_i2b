@@ -9,18 +9,13 @@ import java.io.IOException;
  */
 public class TxtWriter implements ReportWriter {
 
-    private String nombreDocumento = "Documento.txt";
-
     @Override
-    public void writeReport() {
+    public void writeReport(String filename, String content) {
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
 
         try {
-
-            String content = "The document is Empty\n";
-
-            fileWriter = new FileWriter(nombreDocumento);
+            fileWriter = new FileWriter(filename);
             bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(content);
 
