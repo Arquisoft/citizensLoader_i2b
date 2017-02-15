@@ -16,4 +16,4 @@ This application uses MongoDB. For instructions on how to set-up it, you can hav
 * Nicolás Pascual González (@nicolaspascual)
 * Jorge López Fueyo (@nokutu)
 * Miguel García García (@miguelgrc)
-
+* Pablo García Marcos (@pineirin)
