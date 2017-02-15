@@ -1,8 +1,6 @@
 package main.asw.user;
 
 import main.asw.encryption.EncryptionUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 
 import java.util.Date;
 
@@ -13,11 +11,12 @@ import java.util.Date;
  */
 public class User {
 
-    @Id String id;
+	//TODO fix for new db driver
+    String id;
     String name, surname, email, address, nationality, dni;
     Date date;
     String password;
-    @Transient private String unencryptedPass;   //For (TODO) letter generation. Not stored on DB.
+    private String unencryptedPass;   //For (TODO) letter generation. Not stored on DB.
 
 
     public User(String name, String surname, String email, Date date, String address, String nationality, String dni) {
