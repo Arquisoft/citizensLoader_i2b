@@ -42,6 +42,10 @@ public class ApachePoiDataContainer implements CellLikeDataContainer {
         this.numberOfColumns = wb.getSheetAt(currentSheet)
                 .getRow(currentRow)
                 .getPhysicalNumberOfCells();
+
+        while(wb.getSheetAt(currentSheet).getRow(currentRow).getCell(numberOfColumns-1).getStringCellValue().equals(""))
+            numberOfColumns--;
+
     }
 
     private void calculateNumberOfRows() {

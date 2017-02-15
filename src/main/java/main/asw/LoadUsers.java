@@ -40,8 +40,8 @@ public class LoadUsers implements CommandLineRunner {
         if (args.length == 1) {
             try {
                 Parser parser = new Parser(args[0]);
-                List<User> users = parser.loadData();
-                for (User user : users) {
+                parser.readList();
+                for (User user : parser.getUsers()) {
                     //System.out.println(user);
                     repository.save(user);
                 }

@@ -33,6 +33,34 @@ public class User {
         this.password = EncryptionUtils.getInstance().encryptPassword(unencryptedPass);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
         return "User{" +
