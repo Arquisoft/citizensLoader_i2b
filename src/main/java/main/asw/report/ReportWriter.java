@@ -6,7 +6,9 @@ package main.asw.report;
 public interface ReportWriter {
 
     /**
-     * Writes the report into the file system.
+     * Writes a report in different formats using as filename the first parameter and as content the second.
+     * @param filename the name of the file.
+     * @param content the content of the generated file.
      */
     void writeReport(String filename, String content);
 }
