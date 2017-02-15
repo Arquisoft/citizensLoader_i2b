@@ -9,6 +9,9 @@
 
 Skeleton of Citizens Loader module
 
+#Running the application
+This application uses MongoDB. For instructions on how to set-up it, you can have a look at [this](https://github.com/Arquisoft/citizensLoader_i2b/wiki/MongoDB-quick-start-guide) wiki page
+
 # Team members
 * Nicolás Pascual González (@nicolaspascual)
 * Jorge López Fueyo (@nokutu)
