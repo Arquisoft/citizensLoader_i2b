@@ -1,5 +1,7 @@
 package main.asw;
 
+import main.asw.repository.PersistenceFactory;
+import main.asw.repository.UserDao;
 import main.asw.user.User;
 import main.asw.parser.Parser;
 import org.jasypt.util.password.StrongPasswordEncryptor;
@@ -21,9 +23,10 @@ public class LoadUsers {
 
     private final static Logger log = LoggerFactory.getLogger(LoadUsers.class);
 
-    //TODO conexion a la bd
-
     public static void main(String... args) {
+
+        UserDao ud = PersistenceFactory.getUserDAO();
+
     	log.info("Running");
         if (args.length == 1) {
             try {
@@ -31,7 +34,7 @@ public class LoadUsers {
                 List<User> users = parser.loadData();
                 for (User user : users) {
                     //System.out.println(user);
-                    //repository.save(user);
+                    ud.saveUser(user);
                 }
             } catch (IOException | ParseException e) {
                 log.error(e.getMessage(), e);

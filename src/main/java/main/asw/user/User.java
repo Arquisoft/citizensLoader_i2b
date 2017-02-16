@@ -11,8 +11,6 @@ import java.util.Date;
  */
 public class User {
 
-	//TODO fix for new db driver
-    String id;
     String name, surname, email, address, nationality, dni;
     Date date;
     String password;
@@ -47,5 +45,37 @@ public class User {
 
     public String getUnencryptedPass(){
         return unencryptedPass;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
