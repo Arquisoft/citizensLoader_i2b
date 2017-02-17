@@ -19,6 +19,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * Saves a given user in the database
+     *
      * @param u User to be saved
      */
     @Override

@@ -5,7 +5,7 @@ package main.asw.repository;
  */
 public class PersistenceFactory {
 
-    public static UserDao getUserDAO(){
+    public static UserDao getUserDAO() {
         return new UserDaoImpl();
     }
 }

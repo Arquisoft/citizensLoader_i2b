@@ -21,7 +21,7 @@ import static junit.framework.TestCase.assertEquals;
 
 /**
  * Created by MIGUEL on 16/02/2017.
- *
+ * <p>
  * This class runs tests against a temporal database
  */
 public class MongoDBTest {
@@ -36,6 +36,7 @@ public class MongoDBTest {
 
     /**
      * Deploys an in-memory database for simple testing
+     *
      * @throws Exception
      */
     @Before
@@ -48,6 +49,7 @@ public class MongoDBTest {
 
     /**
      * Shuts down the in-memory DB
+     *
      * @throws Exception
      */
     @After

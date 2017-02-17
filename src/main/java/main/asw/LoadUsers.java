@@ -27,7 +27,7 @@ public class LoadUsers {
 
         UserDao ud = PersistenceFactory.getUserDAO();
 
-    	log.info("Running");
+        log.info("Running");
         if (args.length == 1) {
             try {
                 Parser parser = new Parser(args[0]);

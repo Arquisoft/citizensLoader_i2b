@@ -9,6 +9,7 @@ public interface UserDao {
 
     /**
      * Saves a given user in the database
+     *
      * @param u User to be saved
      */
     void saveUser(User u);

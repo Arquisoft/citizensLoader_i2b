@@ -43,7 +43,7 @@ public class User {
                 '}';
     }
 
-    public String getUnencryptedPass(){
+    public String getUnencryptedPass() {
         return unencryptedPass;
     }
 
