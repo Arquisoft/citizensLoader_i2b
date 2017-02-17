@@ -1,10 +1,17 @@
 package main.asw;
 
+import com.mongodb.MongoClient;
+import de.flapdoodle.embed.mongo.MongodExecutable;
+import de.flapdoodle.embed.mongo.MongodProcess;
+import de.flapdoodle.embed.mongo.MongodStarter;
+import de.flapdoodle.embed.mongo.config.MongodConfig;
+import de.flapdoodle.embed.mongo.distribution.Version;
+import de.flapdoodle.embed.process.runtime.Network;
 import main.asw.parser.Parser;
 import main.asw.parser.ParserFactory;
 import main.asw.user.User;
+import org.junit.After;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 
 import static junit.framework.TestCase.assertEquals;
@@ -27,6 +34,34 @@ public class ParserTest {
 
 
     Parser parser;
+
+    private static final String MONGO_HOST = "localhost";
+    private static final int MONGO_PORT = 27017;
+//    private static final String IN_MEM_CONNECTION_URL = MONGO_HOST + ":" + MONGO_PORT;
+
+    private MongodExecutable mongodExe;
+    private MongodProcess mongod;
+    private MongoClient mongoClient;
+
+    /**
+     * Deploys an in-memory database for simple testing
+     *
+     * @throws Exception
+     */
+    public void setupDb() throws Exception {
+        MongodStarter runtime = MongodStarter.getDefaultInstance();
+        mongodExe = runtime.prepare(new MongodConfig(Version.V2_0_5, MONGO_PORT, Network.localhostIsIPv6()));
+        mongod = mongodExe.start();
+        mongoClient = new MongoClient(MONGO_HOST, MONGO_PORT);
+    }
+
+    @After
+    public void tearDownDb() throws Exception {
+        if (mongod != null) {
+            mongod.stop();
+            mongodExe.stop();
+        }
+    }
 
 
     @Test
@@ -82,6 +117,17 @@ public class ParserTest {
     public void testLessLines()throws IOException, ParseException {
         parser = ParserFactory.getParser(TESTLESSLINES);
         parser.readList();
+    }
+
+
+    @Test
+    public void testArchieveInsertion() throws Exception {
+        setupDb();
+        parser = ParserFactory.getParser(TESTOKFILENAME);
+        parser.readList();
+        parser.insert();
+        assertEquals(20, mongoClient.getDatabase("aswdb").getCollection("user").count());
+        tearDownDb();
     }
 
 

@@ -1,5 +1,6 @@
 package main.asw.parser;
 
+import main.asw.repository.PersistenceFactory;
 import main.asw.user.User;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class Parser implements IParser {
     @Override
     public void insert() {
         for (User user : users) {
-            //Save the User
+            PersistenceFactory.getUserDAO().saveUser(user);
         }
     }
 
