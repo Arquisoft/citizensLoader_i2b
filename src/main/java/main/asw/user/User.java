@@ -1,8 +1,6 @@
 package main.asw.user;
 
 import main.asw.encryption.EncryptionUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 
 import java.util.Date;
 
@@ -13,11 +11,10 @@ import java.util.Date;
  */
 public class User {
 
-    @Id String id;
     String name, surname, email, address, nationality, dni;
     Date date;
     String password;
-    @Transient private String unencryptedPass;   //For (TODO) letter generation. Not stored on DB.
+    private String unencryptedPass;   //For (TODO) letter generation. Not stored on DB.
 
 
     public User(String name, String surname, String email, Date date, String address, String nationality, String dni) {
@@ -31,6 +28,23 @@ public class User {
 
         this.unencryptedPass = EncryptionUtils.getInstance().generatePassword();
         this.password = EncryptionUtils.getInstance().encryptPassword(unencryptedPass);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", dni='" + dni + '\'' +
+                ", date=" + date +
+                '}';
+    }
+
+    public String getUnencryptedPass(){
+        return unencryptedPass;
     }
 
     public String getName() {
@@ -61,20 +75,7 @@ public class User {
         return date;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", nationality='" + nationality + '\'' +
-                ", dni='" + dni + '\'' +
-                ", date=" + date +
-                '}';
-    }
-
-    public String getUnencryptedPass(){
-        return unencryptedPass;
+    public String getPassword() {
+        return password;
     }
 }
