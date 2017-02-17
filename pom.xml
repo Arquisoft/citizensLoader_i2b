@@ -38,7 +38,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>required</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -63,12 +63,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.22</version>
 		</dependency>
 
 		<dependency>
@@ -223,13 +217,6 @@
 					<mapping>
 						<jspx>xml</jspx>
 					</mapping>
-					<executions>
-						<execution>
-							<goals>
-								<goal>check</goal>
-							</goals>
-						</execution>
-					</executions>
 				</configuration>
 			</plugin>
 
