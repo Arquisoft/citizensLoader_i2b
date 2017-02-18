@@ -11,20 +11,20 @@ import java.util.Date;
  */
 public class User {
 
-    String name, surname, email, address, nationality, dni;
-    Date date;
+    String firstName, lastName, email, address, nationality, nif;
+    Date dateOfBirth;
     String password;
     private String unencryptedPass;   //For (TODO) letter generation. Not stored on DB.
 
 
-    public User(String name, String surname, String email, Date date, String address, String nationality, String dni) {
-        this.name = name;
-        this.surname = surname;
+    public User(String firstName, String lastName, String email, Date dateOfBirth, String address, String nationality, String nif) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.date = date;
+        this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.nationality = nationality;
-        this.dni = dni;
+        this.nif = nif;
 
         this.unencryptedPass = EncryptionUtils.getInstance().generatePassword();
         this.password = EncryptionUtils.getInstance().encryptPassword(unencryptedPass);
@@ -33,13 +33,13 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", nationality='" + nationality + '\'' +
-                ", dni='" + dni + '\'' +
-                ", date=" + date +
+                ", nif='" + nif + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
                 '}';
     }
 
@@ -47,12 +47,12 @@ public class User {
         return unencryptedPass;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
     public String getEmail() {
@@ -67,12 +67,12 @@ public class User {
         return nationality;
     }
 
-    public String getDni() {
-        return dni;
+    public String getNif() {
+        return nif;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public String getPassword() {

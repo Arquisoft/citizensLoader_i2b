@@ -1,5 +1,6 @@
-package main.asw.parser;
+package main.asw.parser.impl;
 
+import main.asw.parser.CellLikeDataContainer;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import java.io.FileInputStream;

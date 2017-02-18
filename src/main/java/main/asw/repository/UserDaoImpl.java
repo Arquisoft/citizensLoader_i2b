@@ -24,13 +24,13 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public void saveUser(User u) {
-        Document doc = new Document("name", u.getName())
-                .append("surname", u.getSurname())
+        Document doc = new Document("name", u.getFirstName())
+                .append("surname", u.getLastName())
                 .append("email", u.getEmail())
                 .append("address", u.getAddress())
                 .append("nationality", u.getNationality())
-                .append("dni", u.getDni())
-                .append("date", u.getDate())
+                .append("dni", u.getNif())
+                .append("date", u.getDateOfBirth())
                 .append("password", u.getPassword());
         coll.insertOne(doc);
     }

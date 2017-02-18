@@ -7,37 +7,37 @@ import de.flapdoodle.embed.mongo.MongodStarter;
 import de.flapdoodle.embed.mongo.config.MongodConfig;
 import de.flapdoodle.embed.mongo.distribution.Version;
 import de.flapdoodle.embed.process.runtime.Network;
-import main.asw.parser.Parser;
+import main.asw.parser.impl.ParserImpl;
 import main.asw.parser.ParserFactory;
 import main.asw.user.User;
 import org.junit.After;
 import org.junit.Test;
 
-
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
-
 import java.io.IOException;
 import java.text.ParseException;
 
+import static junit.framework.TestCase.assertEquals;
+
 /**
+ *
  * Created by nicolas on 15/02/17.
  */
 public class ParserTest {
 
-    private final static String TESTOKFILENAME = "pruebaUsuarios.xls";
-    private final static String TESTBADDATEAFTERTODAY = "badDateAfterToday.xls";
-    private final static String TESTBADDATEFORMAT = "badDateFormat.xls";
-    private final static String TESTNOFOUNDFILE = "noExiste";
-    private static final String TESTLESSLINES = "lessLines.xls";
-    private static final String TESTMORELINES = "moreLines.xls";
+    private final static String BASE_PATH = "src/test/resources/";
+
+    private final static String TEST_OK_FILE_NAME = "pruebaUsuarios.xls";
+    private final static String TEST_BAD_DATE_AFTER_TODAY = "badDateAfterToday.xls";
+    private final static String TEST_BAD_DATE_FORMAT = "badDateFormat.xls";
+    private final static String TEST_NO_FOUND_FILE = "noExiste";
+    private static final String TEST_LESS_LINES = "lessLines.xls";
+    private static final String TEST_MORE_LINES = "moreLines.xls";
 
 
-    Parser parser;
+    private ParserImpl parser;
 
     private static final String MONGO_HOST = "localhost";
     private static final int MONGO_PORT = 27017;
-//    private static final String IN_MEM_CONNECTION_URL = MONGO_HOST + ":" + MONGO_PORT;
 
     private MongodExecutable mongodExe;
     private MongodProcess mongod;
@@ -46,9 +46,9 @@ public class ParserTest {
     /**
      * Deploys an in-memory database for simple testing
      *
-     * @throws Exception
+     * @throws Exception if any problem occurs trying to launch the DB
      */
-    public void setupDb() throws Exception {
+    private void setupDb() throws Exception {
         MongodStarter runtime = MongodStarter.getDefaultInstance();
         mongodExe = runtime.prepare(new MongodConfig(Version.V2_0_5, MONGO_PORT, Network.localhostIsIPv6()));
         mongod = mongodExe.start();
@@ -67,7 +67,7 @@ public class ParserTest {
     @Test
     public void testAllOKFile() throws IOException, ParseException {
         try {
-            parser = ParserFactory.getParser(TESTOKFILENAME);
+            parser = ParserFactory.getParser(BASE_PATH + TEST_OK_FILE_NAME);
         } catch (IOException e) {e.printStackTrace();}
 
         String baseName = "Prueba";
@@ -81,41 +81,41 @@ public class ParserTest {
         for(int i = 0; i < parser.getUsers().size(); i++){
             String index = (i+1 < 10)? "0"+(i+1):(i+1)+"";
             User user = parser.getUsers().get(i);
-            assertEquals(baseName+index, user.getName());
-            assertEquals(baseSurname+index, user.getSurname());
+            assertEquals(baseName+index, user.getFirstName());
+            assertEquals(baseSurname+index, user.getLastName());
             assertEquals(baseEmail+index+"@prueba.es", user.getEmail());
             assertEquals(baseStreet, user.getAddress());
             assertEquals(baseCountry, user.getNationality());
-            assertEquals(baseId+index+"J", user.getDni());
+            assertEquals(baseId+index+"J", user.getNif());
         }
     }
 
     @Test(expected = IOException.class)
     public void testNoFoundFile() throws IOException {
-        parser = ParserFactory.getParser(TESTNOFOUNDFILE);
+        parser = ParserFactory.getParser(BASE_PATH + TEST_NO_FOUND_FILE);
     }
 
     @Test(expected = ParseException.class)
     public void testestbaddateaftertoday() throws IOException, ParseException {
-        parser = ParserFactory.getParser(TESTBADDATEAFTERTODAY);
+        parser = ParserFactory.getParser(BASE_PATH + TEST_BAD_DATE_AFTER_TODAY);
         parser.readList();
     }
 
     @Test(expected = ParseException.class)
     public void testBadDateFormat() throws IOException, ParseException {
-        parser = ParserFactory.getParser(TESTBADDATEFORMAT);
+        parser = ParserFactory.getParser(BASE_PATH + TEST_BAD_DATE_FORMAT);
         parser.readList();
     }
 
     @Test(expected = ParseException.class)
     public void testMoreLines() throws IOException, ParseException {
-        parser = ParserFactory.getParser(TESTMORELINES);
+        parser = ParserFactory.getParser(BASE_PATH + TEST_MORE_LINES);
         parser.readList();
     }
 
     @Test(expected = ParseException.class)
     public void testLessLines()throws IOException, ParseException {
-        parser = ParserFactory.getParser(TESTLESSLINES);
+        parser = ParserFactory.getParser(BASE_PATH + TEST_LESS_LINES);
         parser.readList();
     }
 
@@ -123,7 +123,7 @@ public class ParserTest {
     @Test
     public void testArchieveInsertion() throws Exception {
         setupDb();
-        parser = ParserFactory.getParser(TESTOKFILENAME);
+        parser = ParserFactory.getParser(BASE_PATH + TEST_OK_FILE_NAME);
         parser.readList();
         parser.insert();
         assertEquals(20, mongoClient.getDatabase("aswdb").getCollection("user").count());

@@ -1,5 +1,7 @@
 package main.asw.parser;
 
+import main.asw.parser.impl.ParserImpl;
+
 import java.io.IOException;
 
 /**
@@ -7,7 +9,7 @@ import java.io.IOException;
  */
 public final class ParserFactory {
 
-    public static Parser getParser(String filename) throws IOException {
-        return new Parser(filename);
+    public static ParserImpl getParser(String filename) throws IOException {
+        return new ParserImpl(filename);
     }
 }
