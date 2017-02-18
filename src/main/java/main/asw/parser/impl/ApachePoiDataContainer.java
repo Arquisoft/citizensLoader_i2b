@@ -95,7 +95,7 @@ public class ApachePoiDataContainer implements CellLikeDataContainer {
 
     @Override
     public String toString() {
-        return "Sheet: " + currentSheet + "Row: " + currentRow;
+        return "Sheet: " + (currentSheet+1) + " Row: " + (currentRow+1);
     }
 
     private HSSFWorkbook readFile(String filename) throws IOException {

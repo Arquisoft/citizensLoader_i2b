@@ -67,7 +67,7 @@ public class MongoDBTest {
     public void testUserInsertion() {
         MongoDatabase db = mongoClient.getDatabase("test");
         MongoCollection<Document> coll = db.getCollection("user");
-        User u = new User("Miguel", "García", "mg@email.com", new Date(), "c/ street", "España", "11122233A");
+        User u = new User("Miguel", "García", "mg@email.com", new Date(), "c/ street", "España", "71735454H");
         Document doc = new Document("name", u.getFirstName())
                 .append("surname", u.getLastName())
                 .append("email", u.getEmail())

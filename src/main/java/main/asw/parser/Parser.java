@@ -12,7 +12,7 @@ public interface Parser {
     /**
      * Reads and parses the data from the excel file.
      */
-    void readList() throws IOException, ParseException;
+    void readList();
 
     /**
      * Inserts the data into the database.

@@ -7,6 +7,7 @@ import de.flapdoodle.embed.mongo.MongodStarter;
 import de.flapdoodle.embed.mongo.config.MongodConfig;
 import de.flapdoodle.embed.mongo.distribution.Version;
 import de.flapdoodle.embed.process.runtime.Network;
+import main.asw.parser.Parser;
 import main.asw.parser.impl.ParserImpl;
 import main.asw.parser.ParserFactory;
 import main.asw.user.User;
@@ -15,6 +16,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -42,6 +44,8 @@ public class ParserTest {
     private MongodExecutable mongodExe;
     private MongodProcess mongod;
     private MongoClient mongoClient;
+
+    Logger log = Logger.getLogger(Parser.class.getName());
 
     /**
      * Deploys an in-memory database for simple testing
@@ -75,7 +79,7 @@ public class ParserTest {
         String baseEmail = "prueba";
         String baseStreet = "c/Prueba n0 1a";
         String baseCountry = "España";
-        String baseId = "000000";//01J
+        String baseId = "71735454H";//01J
         parser.readList();
         assertEquals(20, parser.getUsers().size());
         for(int i = 0; i < parser.getUsers().size(); i++){
@@ -86,7 +90,7 @@ public class ParserTest {
             assertEquals(baseEmail+index+"@prueba.es", user.getEmail());
             assertEquals(baseStreet, user.getAddress());
             assertEquals(baseCountry, user.getNationality());
-            assertEquals(baseId+index+"J", user.getNif());
+            assertEquals("71735454H", user.getNif());
         }
     }
 
@@ -95,28 +99,18 @@ public class ParserTest {
         parser = ParserFactory.getParser(BASE_PATH + TEST_NO_FOUND_FILE);
     }
 
-    @Test(expected = ParseException.class)
-    public void testestbaddateaftertoday() throws IOException, ParseException {
-        parser = ParserFactory.getParser(BASE_PATH + TEST_BAD_DATE_AFTER_TODAY);
-        parser.readList();
-    }
-
-    @Test(expected = ParseException.class)
-    public void testBadDateFormat() throws IOException, ParseException {
-        parser = ParserFactory.getParser(BASE_PATH + TEST_BAD_DATE_FORMAT);
-        parser.readList();
-    }
-
-    @Test(expected = ParseException.class)
+    @Test
     public void testMoreLines() throws IOException, ParseException {
         parser = ParserFactory.getParser(BASE_PATH + TEST_MORE_LINES);
         parser.readList();
+        assertEquals(0,parser.getUsers().size());
     }
 
-    @Test(expected = ParseException.class)
+    @Test
     public void testLessLines()throws IOException, ParseException {
         parser = ParserFactory.getParser(BASE_PATH + TEST_LESS_LINES);
         parser.readList();
+        assertEquals(0,parser.getUsers().size());
     }
 
 

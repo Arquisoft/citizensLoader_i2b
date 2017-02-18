@@ -34,7 +34,7 @@ public class LoadUsers {
                     //System.out.println(user);
                     ud.saveUser(user);
                 }
-            } catch (IOException | ParseException e) {
+            } catch (IOException e) {
                 log.error(e.getMessage(), e);
             }
         }

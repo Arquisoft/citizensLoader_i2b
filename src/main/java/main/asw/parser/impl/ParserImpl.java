@@ -4,6 +4,7 @@ import main.asw.parser.CellLikeDataContainer;
 import main.asw.parser.Parser;
 import main.asw.repository.PersistenceFactory;
 import main.asw.user.User;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -14,9 +15,12 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by nicolas on 3/02/17.
+ *
+ * Created by nicolas on 3/02/17 for citizensLoader0.
  */
 public class ParserImpl implements Parser {
+
+    private final static org.slf4j.Logger log = LoggerFactory.getLogger(Parser.class);
 
     private CellLikeDataContainer dataSource;
     private List<User> users;
@@ -27,9 +31,12 @@ public class ParserImpl implements Parser {
 
 
     @Override
-    public void readList() throws IOException, ParseException {
-        loadData();
-
+    public void readList() {
+        try {
+            loadData();
+        } catch (IOException e) {
+            log.error("Error handling the file");
+        }
     }
 
     @Override
@@ -40,14 +47,20 @@ public class ParserImpl implements Parser {
     }
 
 
-    private void loadData() throws IOException, ParseException {
+    private void loadData() throws IOException {
         List<User> users = new ArrayList<>();
 
         while (dataSource.nextRow()) {
             if (dataSource.getNumberOfColumns() == 7) {
-                users.add(rowToUser());
+                try {
+                    users.add(rowToUser());
+                } catch (ParseException | IllegalArgumentException e) {
+                    //Thrown by the Date Parser
+                    log.error("ParseError: Error reading line " + dataSource.toString() +
+                            " "+e.getMessage(), dataSource.getCurrentRow());
+                }
             } else {
-                throw new ParseException("Error reading line " + dataSource.toString() +
+                log.error("ParseError: Error reading line " + dataSource.toString() +
                         " the number of columns is different than expected", dataSource.getCurrentRow());
             }
 
@@ -60,14 +73,7 @@ public class ParserImpl implements Parser {
         String surname = dataSource.getCell(1);
         String email = dataSource.getCell(2);
         String birthDateString = dataSource.getCell(3);
-        Date date;
-
-        try {
-            date = parseDate(birthDateString);
-        } catch (ParseException e) {
-            throw new ParseException("Error with the date in " + dataSource.toString() +
-                    " it must be in American Format MM/DD/YYYY", dataSource.getCurrentRow());
-        }
+        Date date = parseDate(birthDateString);
         String address = dataSource.getCell(4);
         String nationality = dataSource.getCell(5);
         String dni = dataSource.getCell(6);
@@ -87,8 +93,6 @@ public class ParserImpl implements Parser {
         Date date;
         df.setLenient(false);
         date = df.parse(birthDateString);
-        if (date.after(new Date()))
-            throw new ParseException("", 0);
         return date;
     }
 
