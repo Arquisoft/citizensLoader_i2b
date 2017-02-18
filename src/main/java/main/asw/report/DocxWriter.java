@@ -1,5 +1,6 @@
 package main.asw.report;
 
+import main.asw.user.User;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -19,8 +20,9 @@ public class DocxWriter implements ReportWriter {
     private final static Logger log = LoggerFactory.getLogger(DocxWriter.class);
 
     @Override
-    public void writeReport(String filename, String content) {
+    public void writeReport(String filename, User[] users) {
         try (FileOutputStream outputStream = new FileOutputStream(filename)){
+            String content = users[1].getAddress();
             XWPFDocument document = new XWPFDocument();
             XWPFParagraph paragraph = document.createParagraph();
             paragraph.setAlignment(ParagraphAlignment.CENTER);

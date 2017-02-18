@@ -1,6 +1,7 @@
 package main.asw.report;
 
 import main.asw.LoadUsers;
+import main.asw.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,9 +18,10 @@ public class TxtWriter implements ReportWriter {
     private final static Logger log = LoggerFactory.getLogger(TxtWriter.class);
 
     @Override
-    public void writeReport(String filename, String content) {
+    public void writeReport(String filename, User[] users) {
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
+        String content = users[1].getAddress();
 
         try {
             fileWriter = new FileWriter(filename);
