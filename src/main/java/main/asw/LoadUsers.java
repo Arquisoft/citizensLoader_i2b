@@ -3,14 +3,12 @@ package main.asw;
 import main.asw.repository.PersistenceFactory;
 import main.asw.repository.UserDao;
 import main.asw.user.User;
-import main.asw.parser.Parser;
-import org.jasypt.util.password.StrongPasswordEncryptor;
+import main.asw.parser.impl.ParserImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.List;
 
 /**
  * Main application
@@ -30,7 +28,7 @@ public class LoadUsers {
         log.info("Running");
         if (args.length == 1) {
             try {
-                Parser parser = new Parser(args[0]);
+                ParserImpl parser = new ParserImpl(args[0]);
                 parser.readList();
                 for (User user : parser.getUsers()) {
                     //System.out.println(user);

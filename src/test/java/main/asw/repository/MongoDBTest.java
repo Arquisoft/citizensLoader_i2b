@@ -68,13 +68,13 @@ public class MongoDBTest {
         MongoDatabase db = mongoClient.getDatabase("test");
         MongoCollection<Document> coll = db.getCollection("user");
         User u = new User("Miguel", "García", "mg@email.com", new Date(), "c/ street", "España", "11122233A");
-        Document doc = new Document("name", u.getName())
-                .append("surname", u.getSurname())
+        Document doc = new Document("name", u.getFirstName())
+                .append("surname", u.getLastName())
                 .append("email", u.getEmail())
                 .append("nationality", u.getNationality())
                 .append("address", u.getNationality())
-                .append("dni", u.getDni())
-                .append("date", u.getDate())
+                .append("dni", u.getNif())
+                .append("date", u.getDateOfBirth())
                 .append("password", u.getPassword());
         coll.insertOne(doc);
 
