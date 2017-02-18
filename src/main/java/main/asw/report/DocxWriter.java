@@ -22,7 +22,7 @@ public class DocxWriter implements ReportWriter {
     @Override
     public void writeReport(String filename, User[] users) {
         try (FileOutputStream outputStream = new FileOutputStream(filename)){
-            String content = users[1].getAddress();
+            String content = users[0].getAddress();
             XWPFDocument document = new XWPFDocument();
             XWPFParagraph paragraph = document.createParagraph();
             paragraph.setAlignment(ParagraphAlignment.CENTER);

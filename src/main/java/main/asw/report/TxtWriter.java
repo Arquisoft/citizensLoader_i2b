@@ -21,7 +21,7 @@ public class TxtWriter implements ReportWriter {
     public void writeReport(String filename, User[] users) {
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
-        String content = users[1].getAddress();
+        String content = users[0].getAddress();
 
         try {
             fileWriter = new FileWriter(filename);

@@ -21,7 +21,7 @@ public class MyPdfWriter implements ReportWriter {
     @Override
     public void writeReport(String filename, User[] users) {
         try{
-            String content = users[1].getAddress();
+            String content = users[0].getAddress();
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(filename));
             document.open();
