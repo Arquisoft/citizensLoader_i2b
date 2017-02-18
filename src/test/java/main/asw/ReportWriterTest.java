@@ -20,14 +20,14 @@ public class ReportWriterTest {
     @Test
     public void testDocxWriter() {
         Factory factory = new Factory();
-        ReportWriter reportWriter = factory.createTxtWriter();
+        ReportWriter reportWriter = factory.createDocxWriter();
         reportWriter.writeReport("Segundo.docx", "Adios");
     }
 
     @Test
     public void testPdfWriter() {
         Factory factory = new Factory();
-        ReportWriter reportWriter = factory.createTxtWriter();
+        ReportWriter reportWriter = factory.createPdfWriter();
         reportWriter.writeReport("Tercero.pdf", "Adios");
     }
 
