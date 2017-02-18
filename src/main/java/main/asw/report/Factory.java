@@ -25,11 +25,11 @@ public class Factory {
     }
 
     /**
-     * Method used to create a PdfWriter.
-     * @return Returns a reportWriter, int this case a PdfWriter
+     * Method used to create a MyPdfWriter.
+     * @return Returns a reportWriter, int this case a MyPdfWriter
      */
     public ReportWriter createPdfWriter(){
-        reportWriter = new PdfWriter();
+        reportWriter = new MyPdfWriter();
         return reportWriter;
     }
 }
