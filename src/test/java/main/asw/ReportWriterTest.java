@@ -13,7 +13,8 @@ import static org.junit.Assert.assertEquals;
 public class ReportWriterTest {
     @Test
     public void testTxtWriter() {
-        User[] users = new User[0];
+        User[] users = new User[20];
+        users[0] = new User("","", "", null, "", "", "");
         Factory factory = new Factory();
         ReportWriter reportWriter = factory.createTxtWriter();
         reportWriter.writeReport("Primero.txt", users );
@@ -21,7 +22,8 @@ public class ReportWriterTest {
 
     @Test
     public void testDocxWriter() {
-        User[] users = new User[0];
+        User[] users = new User[20];
+        users[0] = new User("","", "", null, "", "", "");
         Factory factory = new Factory();
         ReportWriter reportWriter = factory.createDocxWriter();
         reportWriter.writeReport("Segundo.docx", users);
@@ -29,7 +31,8 @@ public class ReportWriterTest {
 
     @Test
     public void testPdfWriter() {
-        User[] users = new User[0];
+        User[] users = new User[20];
+        users[0] = new User("","", "", null, "", "", "");
         Factory factory = new Factory();
         ReportWriter reportWriter = factory.createPdfWriter();
         reportWriter.writeReport("Tercero.pdf", users);
