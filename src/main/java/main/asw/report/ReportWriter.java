@@ -10,9 +10,9 @@ import java.util.List;
 public interface ReportWriter {
 
     /**
-     * Writes a report in different formats using as filename the first parameter and as content the second.
+     * Writes a reports in txt word and pdf of the different users.
      *
-     * @param users the users whose information we need to print.
+     * @param users the users whose information we need to report.
      */
     void writeReport(List<User> users);
 }

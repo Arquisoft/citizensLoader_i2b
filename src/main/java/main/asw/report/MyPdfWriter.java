@@ -36,6 +36,12 @@ class MyPdfWriter implements ReportWriter {
         }
     }
 
+    /**
+     * Auxiliar method that adds all the text to the pdf.
+     * @param user the user whose information we want to print.
+     * @param document the document that we want to generate.
+     * @throws DocumentException
+     */
     private void addText(User user, Document document) throws DocumentException {
         document.add(new Paragraph("Greetings: " + user.getFirstName() + " " + user.getLastName()));
         document.add(new Paragraph("This is your personal information that we have received: "));

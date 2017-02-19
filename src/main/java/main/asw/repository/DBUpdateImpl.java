@@ -20,10 +20,9 @@ class DBUpdateImpl implements DBUpdate {
 
     @Override
     public void writeReport() {
-        ReportFactory factory = new ReportFactory();
-        ReportWriter textWriter = factory.createTxtWriter();
-        ReportWriter docxWriter = factory.createDocxWriter();
-        ReportWriter pdfWriter = factory.createPdfWriter();
+        ReportWriter textWriter = ReportFactory.createTxtWriter();
+        ReportWriter docxWriter = ReportFactory.createDocxWriter();
+        ReportWriter pdfWriter = ReportFactory.createPdfWriter();
         textWriter.writeReport(users);
         docxWriter.writeReport(users);
         pdfWriter.writeReport(users);

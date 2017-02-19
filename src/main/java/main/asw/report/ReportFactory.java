@@ -6,7 +6,8 @@ package main.asw.report;
 public class ReportFactory {
 
     /**
-     * Method used to create a TxtWriter.
+     * Method used to create ReportWriter.
+     * @return an instance TxtWriter.
      */
     public static ReportWriter createTxtWriter() {
         return new TxtWriter();
@@ -14,6 +15,7 @@ public class ReportFactory {
 
     /**
      * Method used to create a DocxWriter.
+     * @return an instance of DocxWriter.
      */
     public static ReportWriter createDocxWriter() {
         return new DocxWriter();
@@ -21,6 +23,7 @@ public class ReportFactory {
 
     /**
      * Method used to create a MyPdfWriter.
+     * @return an instance of MyPdfWriter.
      */
     public static ReportWriter createPdfWriter() {
         return new MyPdfWriter();

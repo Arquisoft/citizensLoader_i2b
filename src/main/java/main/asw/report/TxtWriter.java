@@ -21,7 +21,6 @@ class TxtWriter implements ReportWriter {
     public void writeReport(List<User> users) {
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
-        String content = users.get(0).getAddress();
         for (User user : users) {
             try {
                 fileWriter = new FileWriter(user.getEmail() + ".txt");
