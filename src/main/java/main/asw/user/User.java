@@ -126,7 +126,6 @@ public class User {
         }else{
             res = false;
         }
-
         return res;
     }
 }

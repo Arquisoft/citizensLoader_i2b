@@ -21,15 +21,23 @@ public class MyPdfWriter implements ReportWriter {
 
     @Override
     public void writeReport(ArrayList<User> users) {
-        try{
-            String content = users.get(0).getAddress();
-            Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("hola.pdf"));
-            document.open();
-            document.add(new Paragraph("Hello World!"));
-            document.close();
-        }catch (Exception e) {
-            e.printStackTrace();
+        for(User user : users) {
+            try {
+                Document document = new Document();
+                PdfWriter.getInstance(document, new FileOutputStream(user.getEmail() + ".pdf"));
+                document.open();
+                document.add(new Paragraph("Greetings: " + user.getFirstName() + " " + user.getLastName()));
+                document.add(new Paragraph("This is your personal information that we have received: "));
+                document.add(new Paragraph("Date of birth: " + user.getDateOfBirth() + "."));
+                document.add(new Paragraph("NIF: " + user.getNif() + "."));
+                document.add(new Paragraph("Nationality: " + user.getNationality() + "."));
+                document.add(new Paragraph("Addres: " + user.getAddress() + "."));
+                document.add(new Paragraph(" "));
+                document.add(new Paragraph("Your password is: " + user.getUnencryptedPass() + "."));
+                document.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

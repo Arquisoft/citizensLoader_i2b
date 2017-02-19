@@ -34,16 +34,16 @@ public class ReportWriterTest {
         reportWriter.writeReport(users);
     }
 
-    /*
+
     @Test
     public void testPdfWriter() {
         ArrayList<User> users = new ArrayList<User>();
-        users.add(new User("","", "pablo@gmail.com", new Date(), "", "", "53520961F"));
+        users.add(new User("Pablo","García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
         Factory factory = new Factory();
         ReportWriter reportWriter = factory.createPdfWriter();
         reportWriter.writeReport(users);
     }
-    */
+
 
 
 }
