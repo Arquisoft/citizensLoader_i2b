@@ -14,7 +14,7 @@ import java.util.Date;
 public class ReportWriterTest {
     @Test
     public void testTxtWriter() {
-        ArrayList<User> users = new ArrayList<User>();
+        ArrayList<User> users = new ArrayList<>();
         users.add(new User("Pablo", "García", "pineirin@gmail.com", new Date(), "", "Spain", "53520961F"));
         users.add(new User("Pablo", "García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
         ReportFactory factory = new ReportFactory();
@@ -26,7 +26,7 @@ public class ReportWriterTest {
 
     @Test
     public void testDocxWriter() {
-        ArrayList<User> users = new ArrayList<User>();
+        ArrayList<User> users = new ArrayList<>();
         users.add(new User("Pablo", "García", "pineirin@gmail.com", new Date(), "", "Spain", "53520961F"));
         users.add(new User("Pablo", "García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
         ReportFactory factory = new ReportFactory();
@@ -37,7 +37,7 @@ public class ReportWriterTest {
 
     @Test
     public void testPdfWriter() {
-        ArrayList<User> users = new ArrayList<User>();
+        ArrayList<User> users = new ArrayList<>();
         users.add(new User("Pablo", "García", "pineirin@gmail.com", new Date(), "", "Spain", "53520961F"));
         users.add(new User("Pablo", "García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
         ReportFactory factory = new ReportFactory();

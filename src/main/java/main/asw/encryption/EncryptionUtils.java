@@ -15,9 +15,13 @@ public class EncryptionUtils {
     private static SecureRandom secureRnd;  //Expensive to initialize
     private static StrongPasswordEncryptor passwordEncryptor;
 
-    private EncryptionUtils() {
+    static {
         passwordEncryptor = new StrongPasswordEncryptor();
         secureRnd = new SecureRandom();
+    }
+
+    private EncryptionUtils() {
+
     }
 
     public static EncryptionUtils getInstance() {
@@ -36,7 +40,7 @@ public class EncryptionUtils {
      */
     public String generatePassword() {
         int length = 15;
-        char[] possibleCharacters = (new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:,<.>/?")).toCharArray();
+        char[] possibleCharacters = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:,<.>/?").toCharArray();
         return RandomStringUtils.random(length, 0, possibleCharacters.length - 1, false, false, possibleCharacters, secureRnd);
     }
 

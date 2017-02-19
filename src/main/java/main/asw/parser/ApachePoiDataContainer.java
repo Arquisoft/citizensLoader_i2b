@@ -1,6 +1,5 @@
 package main.asw.parser;
 
-import main.asw.parser.CellLikeDataContainer;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import java.io.FileInputStream;
@@ -14,7 +13,7 @@ class ApachePoiDataContainer implements CellLikeDataContainer {
     private int numberOfRows = -1, numberOfColumns = -1,
             currentRow = -1, currentSheet = 0;
 
-    HSSFWorkbook wb;
+    private HSSFWorkbook wb;
 
 
     public ApachePoiDataContainer(String filename) throws IOException {
@@ -59,7 +58,7 @@ class ApachePoiDataContainer implements CellLikeDataContainer {
 
     @Override
     public boolean nextRow() throws IOException {
-        boolean res = false;
+        boolean res;
         if (currentRow + 1 < wb.getSheetAt(currentSheet).getPhysicalNumberOfRows()) {
             currentRow++;
             res = true;
@@ -99,11 +98,8 @@ class ApachePoiDataContainer implements CellLikeDataContainer {
     }
 
     private HSSFWorkbook readFile(String filename) throws IOException {
-        FileInputStream fis = new FileInputStream(filename);
-        try {
+        try (FileInputStream fis = new FileInputStream(filename)) {
             return new HSSFWorkbook(fis);
-        } finally {
-            fis.close();
         }
     }
 }
