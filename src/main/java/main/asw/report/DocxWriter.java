@@ -38,6 +38,11 @@ class DocxWriter implements ReportWriter {
         }
     }
 
+    /**
+     * Auxiliar method that creates the head of the document.
+     * @param user the user whose report we're creating.
+     * @param paragraph the text of the head of the document.
+     */
     private void addTitle(User user, XWPFParagraph paragraph) {
         XWPFRun run = paragraph.createRun();
         run.setBold(true);
@@ -45,6 +50,12 @@ class DocxWriter implements ReportWriter {
         addLine(run, "Greetings: " + user.getFirstName() + " " + user.getLastName());
     }
 
+    /**
+     *
+     * Auxiliar method that creates the body of the document.
+     * @param user the user whose report we're creating.
+     * @param paragraph the text of the body of the document.
+     */
     private XWPFRun addText(User user, XWPFParagraph paragraph) {
         XWPFRun run = paragraph.createRun();
         run.setBold(false);
@@ -58,6 +69,11 @@ class DocxWriter implements ReportWriter {
         return run;
     }
 
+    /**
+     * Auxiliar method that Adds a line of text and a line jump.
+     * @param run the XWPF run.
+     * @param line the text we want to in the line.
+     */
     private void addLine(XWPFRun run, String line) {
         run.setText(line);
         run.addBreak();
