@@ -21,7 +21,7 @@ public class EncryptionUtils {
     }
 
     public static EncryptionUtils getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new EncryptionUtils();
         }
         return instance;
@@ -34,10 +34,10 @@ public class EncryptionUtils {
      *
      * @return the generated password
      */
-    public String generatePassword(){
+    public String generatePassword() {
         int length = 15;
         char[] possibleCharacters = (new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:,<.>/?")).toCharArray();
-        return RandomStringUtils.random(length, 0, possibleCharacters.length-1, false, false, possibleCharacters, secureRnd);
+        return RandomStringUtils.random(length, 0, possibleCharacters.length - 1, false, false, possibleCharacters, secureRnd);
     }
 
     /**
@@ -46,7 +46,7 @@ public class EncryptionUtils {
      * @param unencryptedPass: unencrypted password
      * @return encrypted password
      */
-    public String encryptPassword(String unencryptedPass){
+    public String encryptPassword(String unencryptedPass) {
         return passwordEncryptor.encryptPassword(unencryptedPass);
     }
 
@@ -57,7 +57,7 @@ public class EncryptionUtils {
      * @param encrypted Encrypted password
      * @return true if correct, false otherwise.
      */
-    public boolean checkPassword(String inputPass, String encrypted){
+    public boolean checkPassword(String inputPass, String encrypted) {
         return passwordEncryptor.checkPassword(inputPass, encrypted);
     }
 

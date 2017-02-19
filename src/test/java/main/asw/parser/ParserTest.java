@@ -1,4 +1,4 @@
-package main.asw;
+package main.asw.parser;
 
 import com.mongodb.MongoClient;
 import de.flapdoodle.embed.mongo.MongodExecutable;
@@ -7,9 +7,6 @@ import de.flapdoodle.embed.mongo.MongodStarter;
 import de.flapdoodle.embed.mongo.config.MongodConfig;
 import de.flapdoodle.embed.mongo.distribution.Version;
 import de.flapdoodle.embed.process.runtime.Network;
-import main.asw.parser.Parser;
-import main.asw.parser.impl.ParserImpl;
-import main.asw.parser.ParserFactory;
 import main.asw.user.User;
 import org.junit.After;
 import org.junit.Test;
@@ -21,7 +18,6 @@ import java.util.logging.Logger;
 import static junit.framework.TestCase.assertEquals;
 
 /**
- *
  * Created by nicolas on 15/02/17.
  */
 public class ParserTest {
@@ -72,7 +68,9 @@ public class ParserTest {
     public void testAllOKFile() throws IOException, ParseException {
         try {
             parser = ParserFactory.getParser(BASE_PATH + TEST_OK_FILE_NAME);
-        } catch (IOException e) {e.printStackTrace();}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         String baseName = "Prueba";
         String baseSurname = "Apellido";
@@ -82,12 +80,12 @@ public class ParserTest {
         String baseId = "71735454H";//01J
         parser.readList();
         assertEquals(20, parser.getUsers().size());
-        for(int i = 0; i < parser.getUsers().size(); i++){
-            String index = (i+1 < 10)? "0"+(i+1):(i+1)+"";
+        for (int i = 0; i < parser.getUsers().size(); i++) {
+            String index = (i + 1 < 10) ? "0" + (i + 1) : (i + 1) + "";
             User user = parser.getUsers().get(i);
-            assertEquals(baseName+index, user.getFirstName());
-            assertEquals(baseSurname+index, user.getLastName());
-            assertEquals(baseEmail+index+"@prueba.es", user.getEmail());
+            assertEquals(baseName + index, user.getFirstName());
+            assertEquals(baseSurname + index, user.getLastName());
+            assertEquals(baseEmail + index + "@prueba.es", user.getEmail());
             assertEquals(baseStreet, user.getAddress());
             assertEquals(baseCountry, user.getNationality());
             assertEquals("71735454H", user.getNif());
@@ -103,14 +101,14 @@ public class ParserTest {
     public void testMoreLines() throws IOException, ParseException {
         parser = ParserFactory.getParser(BASE_PATH + TEST_MORE_LINES);
         parser.readList();
-        assertEquals(0,parser.getUsers().size());
+        assertEquals(0, parser.getUsers().size());
     }
 
     @Test
-    public void testLessLines()throws IOException, ParseException {
+    public void testLessLines() throws IOException, ParseException {
         parser = ParserFactory.getParser(BASE_PATH + TEST_LESS_LINES);
         parser.readList();
-        assertEquals(0,parser.getUsers().size());
+        assertEquals(0, parser.getUsers().size());
     }
 
 
@@ -123,7 +121,6 @@ public class ParserTest {
         assertEquals(20, mongoClient.getDatabase("aswdb").getCollection("user").count());
         tearDownDb();
     }
-
 
 
 }

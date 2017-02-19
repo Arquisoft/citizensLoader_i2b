@@ -8,7 +8,7 @@ public class Factory {
     private ReportWriter docxWriter;
     private ReportWriter pdfWriter;
 
-    public Factory(){
+    public Factory() {
         createTxtWriter();
         createDocxWriter();
         createPdfWriter();
@@ -17,21 +17,21 @@ public class Factory {
     /**
      * Method used to create a TxtWriter.
      */
-    private void createTxtWriter(){
+    private void createTxtWriter() {
         txtWriter = new TxtWriter();
     }
 
     /**
      * Method used to create a DocxWriter.
      */
-    private void createDocxWriter(){
+    private void createDocxWriter() {
         docxWriter = new DocxWriter();
     }
 
     /**
      * Method used to create a MyPdfWriter.
      */
-    private void createPdfWriter(){
+    private void createPdfWriter() {
         pdfWriter = new MyPdfWriter();
     }
 

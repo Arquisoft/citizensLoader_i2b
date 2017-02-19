@@ -10,20 +10,20 @@ import org.slf4j.LoggerFactory;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Pineirin
  * @since 14/02/2017.
  */
-public class DocxWriter implements ReportWriter {
+class DocxWriter implements ReportWriter {
 
     private final static Logger log = LoggerFactory.getLogger(DocxWriter.class);
 
     @Override
-    public void writeReport(ArrayList<User> users) {
+    public void writeReport(List<User> users) {
         for (User user : users) {
-            try (FileOutputStream outputStream = new FileOutputStream(user.getEmail()+ ".docx")) {
+            try (FileOutputStream outputStream = new FileOutputStream(user.getEmail() + ".docx")) {
                 XWPFDocument document = new XWPFDocument();
                 XWPFParagraph paragraph = document.createParagraph();
                 paragraph.setAlignment(ParagraphAlignment.LEFT);
@@ -42,7 +42,7 @@ public class DocxWriter implements ReportWriter {
         XWPFRun run = paragraph.createRun();
         run.setBold(true);
         run.setFontSize(20);
-        addLine(run, "Greetings: " +  user.getFirstName()+ " " + user.getLastName());
+        addLine(run, "Greetings: " + user.getFirstName() + " " + user.getLastName());
     }
 
     private XWPFRun addText(User user, XWPFParagraph paragraph) {
@@ -58,7 +58,7 @@ public class DocxWriter implements ReportWriter {
         return run;
     }
 
-    private void addLine(XWPFRun run, String line){
+    private void addLine(XWPFRun run, String line) {
         run.setText(line);
         run.addBreak();
     }

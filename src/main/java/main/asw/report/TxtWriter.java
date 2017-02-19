@@ -1,6 +1,5 @@
 package main.asw.report;
 
-import main.asw.LoadUsers;
 import main.asw.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,26 +7,26 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Pineirin
  * @since 14/02/2017.
  */
-public class TxtWriter implements ReportWriter {
+class TxtWriter implements ReportWriter {
 
     private final static Logger log = LoggerFactory.getLogger(TxtWriter.class);
 
     @Override
-    public void writeReport(ArrayList<User> users) {
+    public void writeReport(List<User> users) {
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
         String content = users.get(0).getAddress();
         for (User user : users) {
             try {
-                fileWriter = new FileWriter(user.getEmail()+ ".txt");
+                fileWriter = new FileWriter(user.getEmail() + ".txt");
                 bufferedWriter = new BufferedWriter(fileWriter);
-                bufferedWriter.write("Greetings: " +  user.getFirstName()+ " " + user.getLastName() + ".\n"
+                bufferedWriter.write("Greetings: " + user.getFirstName() + " " + user.getLastName() + ".\n"
                         + "This is your personal information that we have received: \n"
                         + "Date of birth: " + user.getDateOfBirth() + ".\n"
                         + "NIF: " + user.getNif() + ".\n"

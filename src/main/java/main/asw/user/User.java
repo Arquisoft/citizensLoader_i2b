@@ -116,14 +116,14 @@ public class User {
 
     private boolean validateNif(String nif) {
         Boolean res = true;
-        if(nif.length() == 9) {
+        if (nif.length() == 9) {
             int dni = Integer.parseInt(nif.substring(0, 8));
             String juegoCaracteres = "TRWAGMYFPDXBNJZSQVHLCKE";
             int modulo = dni % 23;
             char letra = juegoCaracteres.charAt(modulo);
             if (nif.charAt(8) != letra)
                 res = false;
-        }else{
+        } else {
             res = false;
         }
         return res;

@@ -9,20 +9,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileOutputStream;
-import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * @author Pineirin
  * @since 14/02/2017.
  */
-public class MyPdfWriter implements ReportWriter {
+class MyPdfWriter implements ReportWriter {
 
     private final static Logger log = LoggerFactory.getLogger(DocxWriter.class);
 
     @Override
-    public void writeReport(ArrayList<User> users) {
-        for(User user : users) {
+    public void writeReport(List<User> users) {
+        for (User user : users) {
             try {
                 Document document = new Document();
                 PdfWriter.getInstance(document, new FileOutputStream(user.getEmail() + ".pdf"));

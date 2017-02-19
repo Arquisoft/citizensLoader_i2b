@@ -4,15 +4,17 @@ package main.asw.repository;
 import main.asw.report.Factory;
 import main.asw.user.User;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class DBUpdateImpl implements DBUpdate {
+class DBUpdateImpl implements DBUpdate {
 
-    private ArrayList<User> users = new ArrayList<User>();
+    private List<User> users;
 
     @Override
-    public void insert(User user) {
-        //repository.save(user);
+    public void insert(List<User> users) {
+        UserDao ud = PersistenceFactory.getUserDAO();
+        this.users = users;
+        users.forEach(ud::saveUser);
     }
 
     @Override

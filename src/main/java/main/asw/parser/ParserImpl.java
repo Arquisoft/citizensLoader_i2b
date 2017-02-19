@@ -1,8 +1,7 @@
-package main.asw.parser.impl;
+package main.asw.parser;
 
-import main.asw.parser.CellLikeDataContainer;
-import main.asw.parser.Parser;
-import main.asw.repository.PersistenceFactory;
+import main.asw.repository.DBUpdate;
+import main.asw.repository.RepositoryFactory;
 import main.asw.user.User;
 import org.slf4j.LoggerFactory;
 
@@ -15,17 +14,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
  * Created by nicolas on 3/02/17 for citizensLoader0.
  */
-public class ParserImpl implements Parser {
+class ParserImpl implements Parser {
 
     private final static org.slf4j.Logger log = LoggerFactory.getLogger(Parser.class);
 
     private CellLikeDataContainer dataSource;
     private List<User> users;
 
-    public ParserImpl(String filename) throws IOException {
+    ParserImpl(String filename) throws IOException {
         this.dataSource = new ApachePoiDataContainer(filename);
     }
 
@@ -41,9 +39,9 @@ public class ParserImpl implements Parser {
 
     @Override
     public void insert() {
-        for (User user : users) {
-            PersistenceFactory.getUserDAO().saveUser(user);
-        }
+        DBUpdate dbupdate = RepositoryFactory.getDBUpdate();
+        dbupdate.insert(users);
+        dbupdate.writeReport();
     }
 
 
@@ -57,7 +55,7 @@ public class ParserImpl implements Parser {
                 } catch (ParseException | IllegalArgumentException e) {
                     //Thrown by the Date Parser
                     log.error("ParseError: Error reading line " + dataSource.toString() +
-                            " "+e.getMessage(), dataSource.getCurrentRow());
+                            " " + e.getMessage(), dataSource.getCurrentRow());
                 }
             } else {
                 log.error("ParseError: Error reading line " + dataSource.toString() +

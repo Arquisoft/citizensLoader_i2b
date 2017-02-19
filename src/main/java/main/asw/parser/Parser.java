@@ -1,7 +1,6 @@
 package main.asw.parser;
 
-import java.io.IOException;
-import java.text.ParseException;
+import org.apache.commons.collections4.map.MultiValueMap;
 
 /**
  * @author nokutu
@@ -18,4 +17,5 @@ public interface Parser {
      * Inserts the data into the database.
      */
     void insert();
+
 }

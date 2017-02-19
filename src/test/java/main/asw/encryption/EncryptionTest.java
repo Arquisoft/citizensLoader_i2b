@@ -1,6 +1,5 @@
 package main.asw.encryption;
 
-import main.asw.encryption.EncryptionUtils;
 import org.junit.Before;
 import org.junit.Test;
 

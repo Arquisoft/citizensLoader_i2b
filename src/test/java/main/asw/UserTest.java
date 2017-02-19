@@ -23,16 +23,16 @@ public class UserTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testDateAfterToday() throws ParseException {
-        new User("P01","P01", "p01@p01.com", parseDate("12/12/3823"), "P01", "P01", "71735454H");
+        new User("P01", "P01", "p01@p01.com", parseDate("12/12/3823"), "P01", "P01", "71735454H");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBadEmail() throws ParseException {
-        new User("P01","P01", "badEmailWhitoutDot", parseDate("12/12/1985"), "P01", "P01", "71735454H");
+        new User("P01", "P01", "badEmailWhitoutDot", parseDate("12/12/1985"), "P01", "P01", "71735454H");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testBadNif() throws ParseException {
-        new User("P01","P01", "p01@email.com", parseDate("12/12/1985"), "P01", "P01", "71735454J");
+        new User("P01", "P01", "p01@email.com", parseDate("12/12/1985"), "P01", "P01", "71735454J");
     }
 }

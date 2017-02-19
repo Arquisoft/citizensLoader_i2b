@@ -9,7 +9,7 @@ import org.bson.Document;
 /**
  * Created by MIGUEL on 16/02/2017.
  */
-public class UserDaoImpl implements UserDao {
+class UserDaoImpl implements UserDao {
 
     //TODO: Maybe take this configuration out of here and receive connection from outside
     //so I can test this with the testing DB running this code for more coverage.
