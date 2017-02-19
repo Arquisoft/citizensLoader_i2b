@@ -1,6 +1,7 @@
 package main.asw.report;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import main.asw.user.User;
@@ -26,18 +27,22 @@ public class MyPdfWriter implements ReportWriter {
                 Document document = new Document();
                 PdfWriter.getInstance(document, new FileOutputStream(user.getEmail() + ".pdf"));
                 document.open();
-                document.add(new Paragraph("Greetings: " + user.getFirstName() + " " + user.getLastName()));
-                document.add(new Paragraph("This is your personal information that we have received: "));
-                document.add(new Paragraph("Date of birth: " + user.getDateOfBirth() + "."));
-                document.add(new Paragraph("NIF: " + user.getNif() + "."));
-                document.add(new Paragraph("Nationality: " + user.getNationality() + "."));
-                document.add(new Paragraph("Addres: " + user.getAddress() + "."));
-                document.add(new Paragraph(" "));
-                document.add(new Paragraph("Your password is: " + user.getUnencryptedPass() + "."));
+                addText(user, document);
                 document.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void addText(User user, Document document) throws DocumentException {
+        document.add(new Paragraph("Greetings: " + user.getFirstName() + " " + user.getLastName()));
+        document.add(new Paragraph("This is your personal information that we have received: "));
+        document.add(new Paragraph("Date of birth: " + user.getDateOfBirth() + "."));
+        document.add(new Paragraph("NIF: " + user.getNif() + "."));
+        document.add(new Paragraph("Nationality: " + user.getNationality() + "."));
+        document.add(new Paragraph("Addres: " + user.getAddress() + "."));
+        document.add(new Paragraph(" "));
+        document.add(new Paragraph("Your password is: " + user.getUnencryptedPass() + "."));
     }
 }

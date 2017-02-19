@@ -28,6 +28,7 @@ public class ReportWriterTest {
     @Test
     public void testDocxWriter() {
         ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("Pablo","García", "pineirin@gmail.com", new Date(), "", "Spain", "53520961F"));
         users.add(new User("Pablo","García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
         Factory factory = new Factory();
         ReportWriter reportWriter = factory.createDocxWriter();
@@ -38,6 +39,7 @@ public class ReportWriterTest {
     @Test
     public void testPdfWriter() {
         ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("Pablo","García", "pineirin@gmail.com", new Date(), "", "Spain", "53520961F"));
         users.add(new User("Pablo","García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
         Factory factory = new Factory();
         ReportWriter reportWriter = factory.createPdfWriter();
