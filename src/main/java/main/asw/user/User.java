@@ -12,9 +12,9 @@ import java.util.Date;
  */
 public class User {
 
-    String firstName, lastName, email, address, nationality, nif;
-    Date dateOfBirth;
-    String password;
+    private String firstName, lastName, email, address, nationality, nif;
+    private Date dateOfBirth;
+    private String password;
     private String unencryptedPass;   //For (TODO) letter generation. Not stored on DB.
 
 

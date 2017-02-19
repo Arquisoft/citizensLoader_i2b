@@ -41,8 +41,6 @@ public class ParserTest {
     private MongodProcess mongod;
     private MongoClient mongoClient;
 
-    Logger log = Logger.getLogger(Parser.class.getName());
-
     /**
      * Deploys an in-memory database for simple testing
      *

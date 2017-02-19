@@ -40,7 +40,7 @@ public class MongoDBTest {
      * @throws Exception
      */
     @Before
-    public void setup() throws Exception {
+    public void setUp() throws Exception {
         MongodStarter runtime = MongodStarter.getDefaultInstance();
         mongodExe = runtime.prepare(new MongodConfig(Version.V2_0_5, MONGO_PORT, Network.localhostIsIPv6()));
         mongod = mongodExe.start();
