@@ -25,7 +25,7 @@ class MyPdfWriter implements ReportWriter {
         for (User user : users) {
             try {
                 Document document = new Document();
-                PdfWriter.getInstance(document, new FileOutputStream(user.getEmail() + ".pdf"));
+                PdfWriter.getInstance(document, new FileOutputStream("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\" + user.getEmail() + ".pdf"));
                 document.open();
                 addText(user, document);
                 document.close();

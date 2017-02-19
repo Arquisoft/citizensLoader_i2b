@@ -23,7 +23,7 @@ class TxtWriter implements ReportWriter {
         FileWriter fileWriter = null;
         for (User user : users) {
             try {
-                fileWriter = new FileWriter(user.getEmail() + ".txt");
+                fileWriter = new FileWriter("..\\citizensLoader_i2b\\Generated\\GeneratedTxt\\" + user.getEmail() + ".txt");
                 bufferedWriter = new BufferedWriter(fileWriter);
                 bufferedWriter.write("Greetings: " + user.getFirstName() + " " + user.getLastName() + ".\n"
                         + "This is your personal information that we have received: \n"
