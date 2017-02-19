@@ -7,6 +7,7 @@ public class ReportFactory {
 
     /**
      * Method used to create ReportWriter.
+     *
      * @return an instance TxtWriter.
      */
     public static ReportWriter createTxtWriter() {
@@ -15,6 +16,7 @@ public class ReportFactory {
 
     /**
      * Method used to create a DocxWriter.
+     *
      * @return an instance of DocxWriter.
      */
     public static ReportWriter createDocxWriter() {
@@ -23,6 +25,7 @@ public class ReportFactory {
 
     /**
      * Method used to create a MyPdfWriter.
+     *
      * @return an instance of MyPdfWriter.
      */
     public static ReportWriter createPdfWriter() {

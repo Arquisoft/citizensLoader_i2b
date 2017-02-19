@@ -38,7 +38,8 @@ class MyPdfWriter implements ReportWriter {
 
     /**
      * Auxiliar method that adds all the text to the pdf.
-     * @param user the user whose information we want to print.
+     *
+     * @param user     the user whose information we want to print.
      * @param document the document that we want to generate.
      * @throws DocumentException
      */

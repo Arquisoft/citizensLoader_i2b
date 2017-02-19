@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.logging.Logger;
 
 import static junit.framework.TestCase.assertEquals;
 
