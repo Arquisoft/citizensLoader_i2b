@@ -2,6 +2,7 @@ package main.asw.repository;
 
 
 import main.asw.report.Factory;
+import main.asw.report.ReportWriter;
 import main.asw.user.User;
 
 import java.util.List;
@@ -20,8 +21,11 @@ class DBUpdateImpl implements DBUpdate {
     @Override
     public void writeReport() {
         Factory factory = new Factory();
-        factory.getTxtWriter().writeReport(users);
-        factory.getDocxWriter().writeReport(users);
-        factory.getPdfWriter().writeReport(users);
+        ReportWriter textWriter = factory.createTxtWriter();
+        ReportWriter docxWriter = factory.createDocxWriter();
+        ReportWriter pdfWriter = factory.createPdfWriter();
+        textWriter.writeReport(users);
+        docxWriter.writeReport(users);
+        pdfWriter.writeReport(users);
     }
 }
