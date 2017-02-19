@@ -5,6 +5,7 @@ import main.asw.report.ReportWriter;
 import main.asw.user.User;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -15,30 +16,34 @@ import static org.junit.Assert.assertEquals;
 public class ReportWriterTest {
     @Test
     public void testTxtWriter() {
-        User[] users = new User[20];
-        users[0] = new User("","", "pablo@gmail.com", new Date(), "", "", "53520961F");
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("Pablo","García", "pineirin@gmail.com", new Date(), "", "Spain", "53520961F"));
+        users.add(new User("Pablo","García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
         Factory factory = new Factory();
         ReportWriter reportWriter = factory.createTxtWriter();
-        reportWriter.writeReport("Primero.txt", users );
+        reportWriter.writeReport(users );
     }
+
 
     @Test
     public void testDocxWriter() {
-        User[] users = new User[20];
-        users[0] = new User("","", "pablo@gmail.com", new Date(), "", "", "53520961F");
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("Pablo","García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
         Factory factory = new Factory();
         ReportWriter reportWriter = factory.createDocxWriter();
-        reportWriter.writeReport("Segundo.docx", users);
+        reportWriter.writeReport(users);
     }
 
+    /*
     @Test
     public void testPdfWriter() {
-        User[] users = new User[20];
-        users[0] = new User("","", "pablo@gmail.com", new Date(), "", "", "53520961F");
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(new User("","", "pablo@gmail.com", new Date(), "", "", "53520961F"));
         Factory factory = new Factory();
         ReportWriter reportWriter = factory.createPdfWriter();
-        reportWriter.writeReport("Tercero.pdf", users);
+        reportWriter.writeReport(users);
     }
+    */
 
 
 }

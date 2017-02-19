@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 
 /**
@@ -19,11 +20,11 @@ public class MyPdfWriter implements ReportWriter {
     private final static Logger log = LoggerFactory.getLogger(DocxWriter.class);
 
     @Override
-    public void writeReport(String filename, User[] users) {
+    public void writeReport(ArrayList<User> users) {
         try{
-            String content = users[0].getAddress();
+            String content = users.get(0).getAddress();
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(filename));
+            PdfWriter.getInstance(document, new FileOutputStream("hola.pdf"));
             document.open();
             document.add(new Paragraph("Hello World!"));
             document.close();

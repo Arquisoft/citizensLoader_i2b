@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * @author Pineirin
@@ -18,28 +19,36 @@ public class TxtWriter implements ReportWriter {
     private final static Logger log = LoggerFactory.getLogger(TxtWriter.class);
 
     @Override
-    public void writeReport(String filename, User[] users) {
+    public void writeReport(ArrayList<User> users) {
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
-        String content = users[0].getAddress();
-
-        try {
-            fileWriter = new FileWriter(filename);
-            bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(content);
-            log.info("Exported correctly to txt format");
-        } catch (IOException e) {
-            log.error(e.getMessage(), e);
-        } finally {
+        String content = users.get(0).getAddress();
+        for (User user : users) {
             try {
-                if (bufferedWriter != null) {
-                    bufferedWriter.close();
+                fileWriter = new FileWriter(user.getEmail()+ ".txt");
+                bufferedWriter = new BufferedWriter(fileWriter);
+                bufferedWriter.write("Greetings: " +  user.getFirstName()+ " " + user.getLastName() + ".\n"
+                        + "This is your personal information that we have received: \n"
+                        + "Date of birth: " + user.getDateOfBirth() + ".\n"
+                        + "NIF: " + user.getNif() + ".\n"
+                        + "Nationality: " + user.getNationality() + ".\n"
+                        + "Addres: " + user.getAddress() + ".\n"
+                        + "\n"
+                        + "Your password is: " + user.getUnencryptedPass() + ".");
+                log.info("Exported correctly to txt format");
+            } catch (IOException e) {
+                log.error(e.getMessage(), e);
+            } finally {
+                try {
+                    if (bufferedWriter != null) {
+                        bufferedWriter.close();
+                    }
+                    if (fileWriter != null) {
+                        fileWriter.close();
+                    }
+                } catch (IOException ex) {
+                    log.error(ex.getMessage(), ex);
                 }
-                if (fileWriter != null) {
-                    fileWriter.close();
-                }
-            } catch (IOException ex) {
-                log.error(ex.getMessage(), ex);
             }
         }
     }
