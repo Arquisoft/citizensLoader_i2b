@@ -29,8 +29,9 @@ public class MyPdfWriter implements ReportWriter {
                 document.open();
                 addText(user, document);
                 document.close();
+                log.info("Exported correctly to docx format");
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error(e.getMessage(), e);
             }
         }
     }

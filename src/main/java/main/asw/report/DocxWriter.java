@@ -46,16 +46,16 @@ public class DocxWriter implements ReportWriter {
     }
 
     private XWPFRun addText(User user, XWPFParagraph paragraph) {
-        XWPFRun run2 = paragraph.createRun();
-        run2.setBold(false);
-        run2.setFontSize(12);
-        addLine(run2, "This is your personal information that we have received: ");
-        addLine(run2, "Date of birth: " + user.getDateOfBirth() + ".");
-        addLine(run2, "NIF: " + user.getNif() + ".");
-        addLine(run2, "Nationality: " + user.getNationality() + ".");
-        addLine(run2, "Addres: " + user.getAddress() + ".");
-        run2.addBreak();
-        return run2;
+        XWPFRun run = paragraph.createRun();
+        run.setBold(false);
+        run.setFontSize(12);
+        addLine(run, "This is your personal information that we have received: ");
+        addLine(run, "Date of birth: " + user.getDateOfBirth() + ".");
+        addLine(run, "NIF: " + user.getNif() + ".");
+        addLine(run, "Nationality: " + user.getNationality() + ".");
+        addLine(run, "Addres: " + user.getAddress() + ".");
+        run.addBreak();
+        return run;
     }
 
     private void addLine(XWPFRun run, String line){
