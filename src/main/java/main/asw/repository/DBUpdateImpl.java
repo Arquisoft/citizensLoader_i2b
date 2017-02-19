@@ -1,7 +1,7 @@
 package main.asw.repository;
 
 
-import main.asw.report.Factory;
+import main.asw.report.ReportFactory;
 import main.asw.report.ReportWriter;
 import main.asw.user.User;
 
@@ -20,7 +20,7 @@ class DBUpdateImpl implements DBUpdate {
 
     @Override
     public void writeReport() {
-        Factory factory = new Factory();
+        ReportFactory factory = new ReportFactory();
         ReportWriter textWriter = factory.createTxtWriter();
         ReportWriter docxWriter = factory.createDocxWriter();
         ReportWriter pdfWriter = factory.createPdfWriter();

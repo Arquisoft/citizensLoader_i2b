@@ -3,32 +3,26 @@ package main.asw.report;
 /**
  * Created by Pineirin on 14/02/2017.
  */
-public class Factory {
-
-    public Factory() {
-        createTxtWriter();
-        createDocxWriter();
-        createPdfWriter();
-    }
+public class ReportFactory {
 
     /**
      * Method used to create a TxtWriter.
      */
-    public ReportWriter createTxtWriter() {
+    public static ReportWriter createTxtWriter() {
         return new TxtWriter();
     }
 
     /**
      * Method used to create a DocxWriter.
      */
-    public ReportWriter createDocxWriter() {
+    public static ReportWriter createDocxWriter() {
         return new DocxWriter();
     }
 
     /**
      * Method used to create a MyPdfWriter.
      */
-    public ReportWriter createPdfWriter() {
+    public static ReportWriter createPdfWriter() {
         return new MyPdfWriter();
     }
 }

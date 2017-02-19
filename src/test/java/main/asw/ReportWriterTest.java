@@ -1,6 +1,6 @@
 package main.asw;
 
-import main.asw.report.Factory;
+import main.asw.report.ReportFactory;
 import main.asw.report.ReportWriter;
 import main.asw.user.User;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class ReportWriterTest {
         ArrayList<User> users = new ArrayList<User>();
         users.add(new User("Pablo", "García", "pineirin@gmail.com", new Date(), "", "Spain", "53520961F"));
         users.add(new User("Pablo", "García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
-        Factory factory = new Factory();
+        ReportFactory factory = new ReportFactory();
         ReportWriter textWriter = factory.createTxtWriter();
         textWriter.writeReport(users);
         //  Files.delete();
@@ -29,7 +29,7 @@ public class ReportWriterTest {
         ArrayList<User> users = new ArrayList<User>();
         users.add(new User("Pablo", "García", "pineirin@gmail.com", new Date(), "", "Spain", "53520961F"));
         users.add(new User("Pablo", "García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
-        Factory factory = new Factory();
+        ReportFactory factory = new ReportFactory();
         ReportWriter docxWriter = factory.createDocxWriter();
         docxWriter.writeReport(users);
     }
@@ -40,7 +40,7 @@ public class ReportWriterTest {
         ArrayList<User> users = new ArrayList<User>();
         users.add(new User("Pablo", "García", "pineirin@gmail.com", new Date(), "", "Spain", "53520961F"));
         users.add(new User("Pablo", "García", "pablo@gmail.com", new Date(), "", "Spain", "53520961F"));
-        Factory factory = new Factory();
+        ReportFactory factory = new ReportFactory();
         ReportWriter pdfWriter = factory.createPdfWriter();
         pdfWriter.writeReport(users);
     }
