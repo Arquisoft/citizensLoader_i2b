@@ -35,10 +35,11 @@ class DocxWriter implements ReportWriter {
                 log.info("Exported correctly to docx format");
             } catch (IOException e) {
                 log.error(e.getMessage(), e);
-            }finally {
+            } finally {
                 try {
-                    assert outputStream != null;
-                    outputStream.close();
+                    if (outputStream != null) {
+                        outputStream.close();
+                    }
                 } catch (IOException ex) {
                     log.error(ex.getMessage(), ex);
                 }
@@ -54,7 +55,7 @@ class DocxWriter implements ReportWriter {
      */
     private void addTitle(User user, XWPFParagraph paragraph) {
         XWPFRun run = paragraph.createRun();
-    //    run.setBold(true);
+        //    run.setBold(true);
         run.setFontSize(14);
         addLine(run, "Greetings: " + user.getFirstName() + " " + user.getLastName() + ".");
     }

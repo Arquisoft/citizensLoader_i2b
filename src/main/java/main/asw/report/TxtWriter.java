@@ -39,9 +39,12 @@ class TxtWriter implements ReportWriter {
                 log.error(e.getMessage(), e);
             } finally {
                 try {
-                    assert bufferedWriter != null;
-                    bufferedWriter.close();
-                    fileWriter.close();
+                    if (bufferedWriter != null) {
+                        bufferedWriter.close();
+                    }
+                    if (fileWriter != null) {
+                        fileWriter.close();
+                    }
                 } catch (IOException ex) {
                     log.error(ex.getMessage(), ex);
                 }

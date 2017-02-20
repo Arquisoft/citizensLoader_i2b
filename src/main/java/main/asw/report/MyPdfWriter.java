@@ -35,11 +35,14 @@ class MyPdfWriter implements ReportWriter {
                 log.info("Exported correctly to pdf format");
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
-            }finally {
-                assert document != null;
-                document.close();
+            } finally {
+                if (document != null) {
+                    document.close();
+                }
                 try {
-                    fileOutputStream.close();
+                    if (fileOutputStream != null) {
+                        fileOutputStream.close();
+                    }
                 } catch (IOException ex) {
                     log.error(ex.getMessage(), ex);
                 }
