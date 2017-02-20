@@ -25,7 +25,7 @@ class DocxWriter implements ReportWriter {
         FileOutputStream outputStream = null;
         for (User user : users) {
             try {
-                outputStream = new FileOutputStream("..\\citizensLoader_i2b\\Generated\\GeneratedDocx\\" + user.getEmail() + ".docx");
+                outputStream = new FileOutputStream("Generated/GeneratedDocx/" + user.getEmail() + ".docx");
                 XWPFDocument document = new XWPFDocument();
                 XWPFParagraph paragraph = document.createParagraph();
                 paragraph.setAlignment(ParagraphAlignment.LEFT);

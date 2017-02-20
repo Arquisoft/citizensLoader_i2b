@@ -29,6 +29,10 @@ public class ReportWriterTest {
 
     @Test
     public void testTxtWriter() {
+
+        File dir = new File("Generated/GeneratedTxt");
+        dir.mkdirs();
+
         List<User> users = new ArrayList<>();
 
         users.add(new User("Pablo", "Pineirin", "pineirin@gmail.com", new Date(), "Gijón", "Spain", "53520961F"));
@@ -38,9 +42,9 @@ public class ReportWriterTest {
         ReportWriter textWriter = ReportFactory.createTxtWriter();
         textWriter.writeReport(users);
 
-        File file = new File("..\\citizensLoader_i2b\\Generated\\GeneratedTxt\\pineirin@gmail.com.txt");
-        File file2 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedTxt\\PabloGarciaMarcos@gmail.com.txt");
-        File file3 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedTxt\\AngelBorreSantiago@gmail.com.txt");
+        File file = new File("Generated/GeneratedTxt/pineirin@gmail.com.txt");
+        File file2 = new File("Generated/GeneratedTxt/PabloGarciaMarcos@gmail.com.txt");
+        File file3 = new File("Generated/GeneratedTxt/AngelBorreSantiago@gmail.com.txt");
         File file4 = new File("pablo@gmail.com.txt");
 
         assertEquals(true, file.exists());
@@ -67,10 +71,17 @@ public class ReportWriterTest {
         assertEquals(true, file2.delete());
         assertEquals(true, file3.delete());
         assertEquals(false, file4.delete());
+
+        dir.delete();
     }
+
 
     @Test
     public void testDocxWriter() {
+
+        File dir = new File("Generated/GeneratedDocx");
+        dir.mkdirs();
+
         List<User> users = new ArrayList<>();
 
         users.add(new User("Pablo", "Pineirin", "pineirin@gmail.com", new Date(), "Gijón", "Spain", "53520961F"));
@@ -80,9 +91,9 @@ public class ReportWriterTest {
         ReportWriter docxWriter = ReportFactory.createDocxWriter();
         docxWriter.writeReport(users);
 
-        File file = new File("..\\citizensLoader_i2b\\Generated\\GeneratedDocx\\pineirin@gmail.com.docx");
-        File file2 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedDocx\\PabloGarciaMarcos@gmail.com.docx");
-        File file3 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedDocx\\AngelBorreSantiago@gmail.com.docx");
+        File file = new File("Generated/GeneratedDocx/pineirin@gmail.com.docx");
+        File file2 = new File("Generated/GeneratedDocx/PabloGarciaMarcos@gmail.com.docx");
+        File file3 = new File("Generated/GeneratedDocx/AngelBorreSantiago@gmail.com.docx");
         File file4 = new File("pablo@gmail.com.docx");
 
         assertEquals(true, file.exists());
@@ -111,10 +122,17 @@ public class ReportWriterTest {
         assertEquals(true, file2.delete());
         assertEquals(true, file3.delete());
         assertEquals(false, file4.delete());
+
+        dir.delete();
     }
+
 
     @Test
     public void testPdfWriter() {
+
+        File dir = new File("Generated/GeneratedPdf");
+        dir.mkdirs();
+
         List<User> users = new ArrayList<>();
 
         users.add(new User("Pablo", "Pineirin", "pineirin@gmail.com", new Date(), "Gijón", "Spain", "53520961F"));
@@ -124,9 +142,9 @@ public class ReportWriterTest {
         ReportWriter pdfWriter = ReportFactory.createPdfWriter();
         pdfWriter.writeReport(users);
 
-        File file = new File("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\pineirin@gmail.com.pdf");
-        File file2 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\PabloGarciaMarcos@gmail.com.pdf");
-        File file3 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\AngelBorreSantiago@gmail.com.pdf");
+        File file = new File("Generated/GeneratedPdf/pineirin@gmail.com.pdf");
+        File file2 = new File("Generated/GeneratedPdf/PabloGarciaMarcos@gmail.com.pdf");
+        File file3 = new File("Generated/GeneratedPdf/AngelBorreSantiago@gmail.com.pdf");
         File file4 = new File("pablo@gmail.com.pdf");
 
         assertEquals(true, file.exists());
@@ -134,9 +152,9 @@ public class ReportWriterTest {
         assertEquals(true, file3.exists());
         assertEquals(false, file4.exists());
 
-        String filename1 = "..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\pineirin@gmail.com.pdf";
-        String filename2 = "..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\PabloGarciaMarcos@gmail.com.pdf";
-        String filename3 = "..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\AngelBorreSantiago@gmail.com.pdf";
+        String filename1 = "Generated/GeneratedPdf/pineirin@gmail.com.pdf";
+        String filename2 = "Generated/GeneratedPdf/PabloGarciaMarcos@gmail.com.pdf";
+        String filename3 = "Generated/GeneratedPdf/AngelBorreSantiago@gmail.com.pdf";
 
 
         String[] lines = readerPdf(filename1);
@@ -158,10 +176,20 @@ public class ReportWriterTest {
         assertEquals(true, file2.delete());
         assertEquals(true, file3.delete());
         assertEquals(false, file4.delete());
+
+        dir.delete();
     }
 
     @Test
     public void testReportWriter() {
+
+        File dir = new File("Generated/GeneratedTxt");
+        dir.mkdirs();
+        File dir2 = new File("Generated/GeneratedDocx");
+        dir2.mkdirs();
+        File dir3 = new File("Generated/GeneratedPdf");
+        dir3.mkdirs();
+
         List<User> users = new ArrayList<>();
 
         users.add(new User("Pablo", "Pineirin", "pineirin@gmail.com", new Date(), "Gijón", "Spain", "53520961F"));
@@ -174,12 +202,12 @@ public class ReportWriterTest {
         docxWriter.writeReport(users);
         pdfWriter.writeReport(users);
 
-        File file = new File("..\\citizensLoader_i2b\\Generated\\GeneratedTxt\\pineirin@gmail.com.txt");
-        File file2 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedTxt\\PabloGarciaMarcos@gmail.com.txt");
-        File file3 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedDocx\\pineirin@gmail.com.docx");
-        File file4 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedDocx\\PabloGarciaMarcos@gmail.com.docx");
-        File file5 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\pineirin@gmail.com.pdf");
-        File file6 = new File("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\PabloGarciaMarcos@gmail.com.pdf");
+        File file = new File("Generated/GeneratedTxt/pineirin@gmail.com.txt");
+        File file2 = new File("Generated/GeneratedTxt/PabloGarciaMarcos@gmail.com.txt");
+        File file3 = new File("Generated/GeneratedDocx/pineirin@gmail.com.docx");
+        File file4 = new File("Generated/GeneratedDocx/PabloGarciaMarcos@gmail.com.docx");
+        File file5 = new File("Generated/GeneratedPdf/pineirin@gmail.com.pdf");
+        File file6 = new File("Generated/GeneratedPdf/PabloGarciaMarcos@gmail.com.pdf");
         File file7 = new File("pineirin@gmail.com.txt");
         File file8 = new File("pablo@gmail.com.pdf");
 
@@ -240,7 +268,13 @@ public class ReportWriterTest {
         assertEquals(true, file6.delete());
         assertEquals(false, file7.delete());
         assertEquals(false, file8.delete());
+
+        new File("Generated/GeneratedTxt").delete();
+        new File("Generated/GeneratedDocx").delete();
+        new File("Generated/GeneratedPdf").delete();
+        new File("Generated").delete();
     }
+
 
     private String[] readerTxt(File file) {
         String[] lines = new String[9];
@@ -263,8 +297,8 @@ public class ReportWriterTest {
             log.error(e.getMessage(), e);
         } finally {
             try {
-                assert bufferedReader != null;
-                bufferedReader.close();
+                if( bufferedReader != null)
+                    bufferedReader.close();
             } catch (IOException ex) {
                 log.error(ex.getMessage(), ex);
             }
@@ -289,8 +323,9 @@ public class ReportWriterTest {
             log.error(e.getMessage(), e);
         }finally {
             try {
-                assert fileInputStream != null;
-                fileInputStream.close();
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                }
             } catch (IOException ex) {
                 log.error(ex.getMessage(), ex);
             }
@@ -313,8 +348,8 @@ public class ReportWriterTest {
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }finally {
-            assert reader != null;
-            reader.close();
+            if( reader != null)
+                reader.close();
         }
 
         return lines;
