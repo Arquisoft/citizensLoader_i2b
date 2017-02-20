@@ -88,7 +88,22 @@ public class ReportWriterTest {
         assertEquals(true, file3.exists());
         assertEquals(false, file4.exists());
 
-        ReaderDocx(file);
+
+        String[] lines = ReaderDocx(file);
+        assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
+        assertTrue(lines[1].contains("This is your personal information that we have received: "));
+        assertTrue(lines[7].contains("Your password is: "));
+
+        lines = ReaderDocx(file2);
+        assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
+        assertTrue(lines[3].contains("NIF: 53520961F"));
+        assertTrue(lines[7].contains("Your password is: "));
+
+        lines = ReaderDocx(file3);
+        assertTrue(lines[0].contains("Greetings: Angel Borré Santiago."));
+        assertTrue(lines[5].contains("Addres: Navia"));
+        assertTrue(lines[7].contains("Your password is: "));
+
 
         assertEquals(true, file.delete());
         assertEquals(true, file2.delete());
@@ -166,6 +181,16 @@ public class ReportWriterTest {
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[7].contains("Your password is: "));
 
+        lines = ReaderDocx(file3);
+        assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
+        assertTrue(lines[1].contains("This is your personal information that we have received: "));
+        assertTrue(lines[7].contains("Your password is: "));
+
+        lines = ReaderDocx(file4);
+        assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
+        assertTrue(lines[3].contains("NIF: 53520961F"));
+        assertTrue(lines[7].contains("Your password is: "));
+
         assertEquals(true, file.delete());
         assertEquals(true, file2.delete());
         assertEquals(true, file3.delete());
@@ -206,7 +231,8 @@ public class ReportWriterTest {
         return lines;
     }
 
-    private void ReaderDocx(File file) {
+    private String[] ReaderDocx(File file) {
+        String[] lines = new String[8];
         FileInputStream fileInputStream = null;
         try {
             fileInputStream = new FileInputStream(file);
@@ -214,8 +240,8 @@ public class ReportWriterTest {
 
             List<XWPFParagraph> paragraphs = document.getParagraphs();
 
-            for (XWPFParagraph para : paragraphs) {
-                System.out.println(para.getText());
+            for (XWPFParagraph paragraph : paragraphs) {
+               lines = paragraph.getText().split("\n");
             }
 
         } catch (IOException e) {
@@ -228,6 +254,7 @@ public class ReportWriterTest {
                 log.error(ex.getMessage(), ex);
             }
         }
+        return lines;
     }
 
 }

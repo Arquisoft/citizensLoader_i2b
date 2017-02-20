@@ -57,7 +57,7 @@ class DocxWriter implements ReportWriter {
         XWPFRun run = paragraph.createRun();
         run.setBold(true);
         run.setFontSize(20);
-        addLine(run, "Greetings: " + user.getFirstName() + " " + user.getLastName());
+        addLine(run, "Greetings: " + user.getFirstName() + " " + user.getLastName() + ".");
     }
 
     /**
