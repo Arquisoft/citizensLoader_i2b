@@ -5,7 +5,8 @@ import main.asw.user.User;
 import java.util.List;
 
 /**
- * Created by jorge on 14/02/2017.
+ * @author Pineirin
+ * @since 14/02/2017.
  */
 public interface ReportWriter {
 

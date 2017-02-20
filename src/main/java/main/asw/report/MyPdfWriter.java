@@ -41,7 +41,7 @@ class MyPdfWriter implements ReportWriter {
      *
      * @param user     the user whose information we want to print.
      * @param document the document that we want to generate.
-     * @throws DocumentException
+     * @throws DocumentException throws a exception you aren't able to write in the document.
      */
     private void addText(User user, Document document) throws DocumentException {
         document.add(new Paragraph("Greetings: " + user.getFirstName() + " " + user.getLastName()));
