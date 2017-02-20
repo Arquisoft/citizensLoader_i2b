@@ -46,17 +46,17 @@ public class ReportWriterTest {
         assertEquals(true, file3.exists());
         assertEquals(false, file4.exists());
 
-        String[] lines = ReaderTxt(file);
+        String[] lines = readerTxt(file);
         assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
         assertTrue(lines[1].contains("This is your personal information that we have received: "));
         assertTrue(lines[7].contains("Your password is: "));
 
-        lines = ReaderTxt(file2);
+        lines = readerTxt(file2);
         assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[7].contains("Your password is: "));
 
-        lines = ReaderTxt(file3);
+        lines = readerTxt(file3);
         assertTrue(lines[0].contains("Greetings: Angel Borré Santiago."));
         assertTrue(lines[5].contains("Addres: Navia"));
         assertTrue(lines[7].contains("Your password is: "));
@@ -89,17 +89,17 @@ public class ReportWriterTest {
         assertEquals(false, file4.exists());
 
 
-        String[] lines = ReaderDocx(file);
+        String[] lines = readerDocx(file);
         assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
         assertTrue(lines[1].contains("This is your personal information that we have received: "));
         assertTrue(lines[7].contains("Your password is: "));
 
-        lines = ReaderDocx(file2);
+        lines = readerDocx(file2);
         assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[7].contains("Your password is: "));
 
-        lines = ReaderDocx(file3);
+        lines = readerDocx(file3);
         assertTrue(lines[0].contains("Greetings: Angel Borré Santiago."));
         assertTrue(lines[5].contains("Addres: Navia"));
         assertTrue(lines[7].contains("Your password is: "));
@@ -171,22 +171,22 @@ public class ReportWriterTest {
         assertEquals(false, file7.exists());
         assertEquals(false, file8.exists());
 
-        String[] lines = ReaderTxt(file);
+        String[] lines = readerTxt(file);
         assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
         assertTrue(lines[1].contains("This is your personal information that we have received: "));
         assertTrue(lines[7].contains("Your password is: "));
 
-        lines = ReaderTxt(file2);
+        lines = readerTxt(file2);
         assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[7].contains("Your password is: "));
 
-        lines = ReaderDocx(file3);
+        lines = readerDocx(file3);
         assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
         assertTrue(lines[1].contains("This is your personal information that we have received: "));
         assertTrue(lines[7].contains("Your password is: "));
 
-        lines = ReaderDocx(file4);
+        lines = readerDocx(file4);
         assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[7].contains("Your password is: "));
@@ -201,7 +201,7 @@ public class ReportWriterTest {
         assertEquals(false, file8.delete());
     }
 
-    private String[] ReaderTxt(File file) {
+    private String[] readerTxt(File file) {
         String[] lines = new String[8];
         BufferedReader bufferedReader = null;
         try {
@@ -231,7 +231,7 @@ public class ReportWriterTest {
         return lines;
     }
 
-    private String[] ReaderDocx(File file) {
+    private String[] readerDocx(File file) {
         String[] lines = new String[8];
         FileInputStream fileInputStream = null;
         try {
