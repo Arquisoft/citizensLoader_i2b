@@ -31,7 +31,6 @@ class DocxWriter implements ReportWriter {
                 paragraph.setAlignment(ParagraphAlignment.LEFT);
                 addTitle(user, paragraph);
                 XWPFRun run2 = addText(user, paragraph);
-                addLine(run2, "Your password is: " + user.getUnencryptedPass() + ".");
                 document.write(outputStream);
                 log.info("Exported correctly to docx format");
             } catch (IOException e) {
@@ -55,7 +54,7 @@ class DocxWriter implements ReportWriter {
      */
     private void addTitle(User user, XWPFParagraph paragraph) {
         XWPFRun run = paragraph.createRun();
-        run.setBold(true);
+    //    run.setBold(true);
         run.setFontSize(20);
         addLine(run, "Greetings: " + user.getFirstName() + " " + user.getLastName() + ".");
     }
@@ -76,6 +75,7 @@ class DocxWriter implements ReportWriter {
         addLine(run, "Nationality: " + user.getNationality() + ".");
         addLine(run, "Addres: " + user.getAddress() + ".");
         run.addBreak();
+        addLine(run, "Your password is: " + user.getUnencryptedPass() + ".");
         return run;
     }
 

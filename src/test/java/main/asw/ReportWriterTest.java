@@ -1,5 +1,7 @@
 package main.asw;
 
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import main.asw.report.ReportFactory;
 import main.asw.report.ReportWriter;
 import main.asw.user.User;
@@ -132,12 +134,31 @@ public class ReportWriterTest {
         assertEquals(true, file3.exists());
         assertEquals(false, file4.exists());
 
+        String filename1 = "..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\pineirin@gmail.com.pdf";
+        String filename2 = "..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\PabloGarciaMarcos@gmail.com.pdf";
+        String filename3 = "..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\AngelBorreSantiago@gmail.com.pdf";
+
+
+        String[] lines = readerPdf(filename1);
+        assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
+        assertTrue(lines[1].contains("This is your personal information that we have received: "));
+        assertTrue(lines[7].contains("Your password is: "));
+
+        lines = readerPdf(filename2);
+        assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
+        assertTrue(lines[3].contains("NIF: 53520961F"));
+        assertTrue(lines[7].contains("Your password is: "));
+
+        lines = readerPdf(filename3);
+        assertTrue(lines[0].contains("Greetings: Angel Borré Santiago."));
+        assertTrue(lines[5].contains("Addres: Navia"));
+        assertTrue(lines[7].contains("Your password is: "));
+
         assertEquals(true, file.delete());
         assertEquals(true, file2.delete());
         assertEquals(true, file3.delete());
         assertEquals(false, file4.delete());
     }
-
 
     @Test
     public void testReportWriter() {
@@ -173,6 +194,7 @@ public class ReportWriterTest {
 
         String contraseña1;
         String contraseña2;
+        String contraseña3;
 
         String[] lines = readerTxt(file);
         assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
@@ -196,7 +218,19 @@ public class ReportWriterTest {
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[7].contains("Your password is: "));
 
+        lines = readerPdf("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\pineirin@gmail.com.pdf");
+        assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
+        assertTrue(lines[1].contains("This is your personal information that we have received: "));
+        assertTrue(lines[7].contains("Your password is: "));
+        contraseña3 = lines[7];
+
+        lines = readerPdf("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\PabloGarciaMarcos@gmail.com.pdf");
+        assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
+        assertTrue(lines[3].contains("NIF: 53520961F"));
+        assertTrue(lines[7].contains("Your password is: "));
+
         assertTrue(contraseña1.contains(contraseña2));
+        assertTrue(contraseña1.contains(contraseña3));
 
         assertEquals(true, file.delete());
         assertEquals(true, file2.delete());
@@ -261,6 +295,28 @@ public class ReportWriterTest {
                 log.error(ex.getMessage(), ex);
             }
         }
+        return lines;
+    }
+
+    private String[] readerPdf(String filename1) {
+        PdfReader reader = null;
+        String[] lines = new String[8];
+
+        try {
+
+            reader = new PdfReader(filename1);
+
+            String textFromPage = PdfTextExtractor.getTextFromPage(reader, 1);
+
+            lines = textFromPage.split("\n");
+
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }finally {
+            assert reader != null;
+            reader.close();
+        }
+
         return lines;
     }
 
