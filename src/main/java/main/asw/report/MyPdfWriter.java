@@ -22,16 +22,19 @@ class MyPdfWriter implements ReportWriter {
 
     @Override
     public void writeReport(List<User> users) {
+        Document document = null;
         for (User user : users) {
             try {
-                Document document = new Document();
+                document = new Document();
                 PdfWriter.getInstance(document, new FileOutputStream("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\" + user.getEmail() + ".pdf"));
                 document.open();
                 addText(user, document);
-                document.close();
                 log.info("Exported correctly to pdf format");
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
+            }finally {
+                assert document != null;
+                document.close();
             }
         }
     }

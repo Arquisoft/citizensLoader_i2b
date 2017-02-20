@@ -22,8 +22,10 @@ class DocxWriter implements ReportWriter {
 
     @Override
     public void writeReport(List<User> users) {
+        FileOutputStream outputStream = null;
         for (User user : users) {
-            try (FileOutputStream outputStream = new FileOutputStream("..\\citizensLoader_i2b\\Generated\\GeneratedDocx\\" + user.getEmail() + ".docx")) {
+            try {
+                outputStream = new FileOutputStream("..\\citizensLoader_i2b\\Generated\\GeneratedDocx\\" + user.getEmail() + ".docx");
                 XWPFDocument document = new XWPFDocument();
                 XWPFParagraph paragraph = document.createParagraph();
                 paragraph.setAlignment(ParagraphAlignment.LEFT);
@@ -34,6 +36,13 @@ class DocxWriter implements ReportWriter {
                 log.info("Exported correctly to docx format");
             } catch (IOException e) {
                 log.error(e.getMessage(), e);
+            }finally {
+                try {
+                    assert outputStream != null;
+                    outputStream.close();
+                } catch (IOException ex) {
+                    log.error(ex.getMessage(), ex);
+                }
             }
         }
     }

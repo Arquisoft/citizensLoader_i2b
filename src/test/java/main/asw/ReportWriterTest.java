@@ -3,6 +3,8 @@ package main.asw;
 import main.asw.report.ReportFactory;
 import main.asw.report.ReportWriter;
 import main.asw.user.User;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,17 +46,17 @@ public class ReportWriterTest {
         assertEquals(true, file3.exists());
         assertEquals(false, file4.exists());
 
-        String[] lines = Reader(file);
+        String[] lines = ReaderTxt(file);
         assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
         assertTrue(lines[1].contains("This is your personal information that we have received: "));
         assertTrue(lines[7].contains("Your password is: "));
 
-        lines = Reader(file2);
+        lines = ReaderTxt(file2);
         assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[7].contains("Your password is: "));
 
-        lines = Reader(file3);
+        lines = ReaderTxt(file3);
         assertTrue(lines[0].contains("Greetings: Angel Borré Santiago."));
         assertTrue(lines[5].contains("Addres: Navia"));
         assertTrue(lines[7].contains("Your password is: "));
@@ -85,6 +87,8 @@ public class ReportWriterTest {
         assertEquals(true, file2.exists());
         assertEquals(true, file3.exists());
         assertEquals(false, file4.exists());
+
+        ReaderDocx(file);
 
         assertEquals(true, file.delete());
         assertEquals(true, file2.delete());
@@ -152,12 +156,12 @@ public class ReportWriterTest {
         assertEquals(false, file7.exists());
         assertEquals(false, file8.exists());
 
-        String[] lines = Reader(file);
+        String[] lines = ReaderTxt(file);
         assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
         assertTrue(lines[1].contains("This is your personal information that we have received: "));
         assertTrue(lines[7].contains("Your password is: "));
 
-        lines = Reader(file2);
+        lines = ReaderTxt(file2);
         assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[7].contains("Your password is: "));
@@ -172,17 +176,12 @@ public class ReportWriterTest {
         assertEquals(false, file8.delete());
     }
 
-    private String[] Reader(File file) {
+    private String[] ReaderTxt(File file) {
         String[] lines = new String[8];
         BufferedReader bufferedReader = null;
         try {
             bufferedReader = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
             StringBuilder sb = new StringBuilder();
-            assert bufferedReader != null;
             String line = bufferedReader.readLine();
 
             int i = 0;
@@ -201,10 +200,34 @@ public class ReportWriterTest {
                 assert bufferedReader != null;
                 bufferedReader.close();
             } catch (IOException ex) {
-                ex.printStackTrace();
+                log.error(ex.getMessage(), ex);
             }
         }
         return lines;
+    }
+
+    private void ReaderDocx(File file) {
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(file);
+            XWPFDocument document = new XWPFDocument(fileInputStream);
+
+            List<XWPFParagraph> paragraphs = document.getParagraphs();
+
+            for (XWPFParagraph para : paragraphs) {
+                System.out.println(para.getText());
+            }
+
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }finally {
+            try {
+                assert fileInputStream != null;
+                fileInputStream.close();
+            } catch (IOException ex) {
+                log.error(ex.getMessage(), ex);
+            }
+        }
     }
 
 }

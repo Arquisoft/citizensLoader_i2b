@@ -21,7 +21,7 @@ class TxtWriter implements ReportWriter {
     public void writeReport(List<User> users) {
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
-        for (User user : users) {
+        for (User user : users)
             try {
                 fileWriter = new FileWriter("..\\citizensLoader_i2b\\Generated\\GeneratedTxt\\" + user.getEmail() + ".txt");
                 bufferedWriter = new BufferedWriter(fileWriter);
@@ -38,16 +38,12 @@ class TxtWriter implements ReportWriter {
                 log.error(e.getMessage(), e);
             } finally {
                 try {
-                    if (bufferedWriter != null) {
-                        bufferedWriter.close();
-                    }
-                    if (fileWriter != null) {
-                        fileWriter.close();
-                    }
+                    assert bufferedWriter != null;
+                    bufferedWriter.close();
+                    fileWriter.close();
                 } catch (IOException ex) {
                     log.error(ex.getMessage(), ex);
                 }
             }
-        }
     }
 }
