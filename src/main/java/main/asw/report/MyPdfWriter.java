@@ -29,7 +29,7 @@ class MyPdfWriter implements ReportWriter {
                 document.open();
                 addText(user, document);
                 document.close();
-                log.info("Exported correctly to docx format");
+                log.info("Exported correctly to pdf format");
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }
