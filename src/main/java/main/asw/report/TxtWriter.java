@@ -32,6 +32,7 @@ class TxtWriter implements ReportWriter {
                         + "Nationality: " + user.getNationality() + ".\n"
                         + "Addres: " + user.getAddress() + ".\n"
                         + "\n"
+                        + "Your user name is your email: " + user.getEmail() + ".\n"
                         + "Your password is: " + user.getUnencryptedPass() + ".");
                 log.info("Exported correctly to txt format");
             } catch (IOException e) {

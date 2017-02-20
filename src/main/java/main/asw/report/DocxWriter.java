@@ -55,7 +55,7 @@ class DocxWriter implements ReportWriter {
     private void addTitle(User user, XWPFParagraph paragraph) {
         XWPFRun run = paragraph.createRun();
     //    run.setBold(true);
-        run.setFontSize(20);
+        run.setFontSize(14);
         addLine(run, "Greetings: " + user.getFirstName() + " " + user.getLastName() + ".");
     }
 
@@ -75,6 +75,7 @@ class DocxWriter implements ReportWriter {
         addLine(run, "Nationality: " + user.getNationality() + ".");
         addLine(run, "Addres: " + user.getAddress() + ".");
         run.addBreak();
+        addLine(run, "Your user name is your email: " + user.getEmail() + ".");
         addLine(run, "Your password is: " + user.getUnencryptedPass() + ".");
         return run;
     }
