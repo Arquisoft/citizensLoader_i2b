@@ -171,10 +171,14 @@ public class ReportWriterTest {
         assertEquals(false, file7.exists());
         assertEquals(false, file8.exists());
 
+        String contraseña1;
+        String contraseña2;
+
         String[] lines = readerTxt(file);
         assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
         assertTrue(lines[1].contains("This is your personal information that we have received: "));
         assertTrue(lines[7].contains("Your password is: "));
+        contraseña1 = lines[7];
 
         lines = readerTxt(file2);
         assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
@@ -185,11 +189,14 @@ public class ReportWriterTest {
         assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
         assertTrue(lines[1].contains("This is your personal information that we have received: "));
         assertTrue(lines[7].contains("Your password is: "));
+        contraseña2 = lines[7];
 
         lines = readerDocx(file4);
         assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[7].contains("Your password is: "));
+
+        assertTrue(contraseña1.contains(contraseña2));
 
         assertEquals(true, file.delete());
         assertEquals(true, file2.delete());
