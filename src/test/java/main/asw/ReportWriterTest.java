@@ -246,13 +246,13 @@ public class ReportWriterTest {
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[8].contains("Your password is: "));
 
-        lines = readerPdf("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\pineirin@gmail.com.pdf");
+        lines = readerPdf("Generated/GeneratedPdf/pineirin@gmail.com.pdf");
         assertTrue(lines[0].contains("Greetings: Pablo Pineirin."));
         assertTrue(lines[1].contains("This is your personal information that we have received: "));
         assertTrue(lines[8].contains("Your password is: "));
         contraseña3 = lines[8];
 
-        lines = readerPdf("..\\citizensLoader_i2b\\Generated\\GeneratedPdf\\PabloGarciaMarcos@gmail.com.pdf");
+        lines = readerPdf("Generated/GeneratedPdf/PabloGarciaMarcos@gmail.com.pdf");
         assertTrue(lines[0].contains("Greetings: Pablo García Marcos."));
         assertTrue(lines[3].contains("NIF: 53520961F"));
         assertTrue(lines[8].contains("Your password is: "));
