@@ -3,6 +3,7 @@
 .metadata
 bin/
 tmp/
+Generated/
 *.tmp
 *.bak
 *.swp
