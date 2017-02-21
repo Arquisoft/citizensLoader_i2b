@@ -65,7 +65,7 @@ class MyPdfWriter implements ReportWriter {
         document.add(new Paragraph("Nationality: " + user.getNationality() + "."));
         document.add(new Paragraph("Address: " + user.getAddress() + "."));
         document.add(new Paragraph(" "));
-        document.add(new Paragraph("Your user name is your email: " + user.getEmail() + "."));
-        document.add(new Paragraph("Your password is: " + user.getUnencryptedPass() + "."));
+        document.add(new Paragraph("Your user name is your email: " + user.getEmail()));
+        document.add(new Paragraph("Your password is: " + user.getUnencryptedPass()));
     }
 }

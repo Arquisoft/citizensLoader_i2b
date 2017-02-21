@@ -22,7 +22,7 @@ import static junit.framework.TestCase.assertEquals;
 /**
  * Created by MIGUEL on 16/02/2017.
  * <p>
- * This class runs tests against a temporal database
+ * This class runs tests against a temporal database (in-memory)
  */
 public class MongoDBTest {
 
