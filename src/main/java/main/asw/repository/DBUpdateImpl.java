@@ -6,17 +6,22 @@ import main.asw.report.ReportWriter;
 import main.asw.user.User;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 class DBUpdateImpl implements DBUpdate {
 
-    private List<User> users;
+    private List<User> correctUsers;
 
     @Override
     public void insert(List<User> users) {
         UserDao ud = PersistenceFactory.getUserDAO();
-        this.users = users;
-        users.forEach(ud::saveUser);
+        this.correctUsers = new ArrayList<>();
+        for (User u : users) {
+            if(ud.saveUser(u)) {
+                correctUsers.add(u);
+            }
+        }
     }
 
     @Override
@@ -25,9 +30,9 @@ class DBUpdateImpl implements DBUpdate {
         ReportWriter textWriter = ReportFactory.createTxtWriter();
         ReportWriter docxWriter = ReportFactory.createDocxWriter();
         ReportWriter pdfWriter = ReportFactory.createPdfWriter();
-        textWriter.writeReport(users);
-        docxWriter.writeReport(users);
-        pdfWriter.writeReport(users);
+        textWriter.writeReport(correctUsers);
+        docxWriter.writeReport(correctUsers);
+        pdfWriter.writeReport(correctUsers);
     }
 
     private void generateDirectories() {

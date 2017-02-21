@@ -5,33 +5,46 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import main.asw.user.User;
 import org.bson.Document;
+import org.slf4j.LoggerFactory;
+
+import static com.mongodb.client.model.Filters.eq;
 
 /**
  * Created by MIGUEL on 16/02/2017.
  */
 class UserDaoImpl implements UserDao {
 
-    //TODO: Maybe take this configuration out of here and receive connection from outside
-    //so I can test this with the testing DB running this code for more coverage.
+    private final static org.slf4j.Logger log = LoggerFactory.getLogger(UserDao.class);
+
     private static MongoClient mongoClient = new MongoClient("localhost", 27017);
     private static MongoDatabase db = mongoClient.getDatabase("aswdb");
     private static MongoCollection<Document> coll = db.getCollection("user");
 
     /**
-     * Saves a given user in the database
+     * Saves a given user in the database if there ins't already one with the same userId
      *
      * @param u User to be saved
+     *
      */
     @Override
-    public void saveUser(User u) {
-        Document doc = new Document("name", u.getFirstName())
-                .append("surname", u.getLastName())
-                .append("email", u.getEmail())
-                .append("address", u.getAddress())
-                .append("nationality", u.getNationality())
-                .append("dni", u.getNif())
-                .append("date", u.getDateOfBirth())
-                .append("password", u.getPassword());
-        coll.insertOne(doc);
+    public boolean saveUser(User u) {
+        if (coll.find(eq("userId", u.getNif())).first() == null) {
+            Document doc = new Document("firstName", u.getFirstName())
+                    .append("lastName", u.getLastName())
+                    .append("email", u.getEmail())
+                    .append("address", u.getAddress())
+                    .append("nationality", u.getNationality())
+                    .append("userId", u.getNif())
+                    .append("dateOfBirth", u.getDateOfBirth())
+                    .append("password", u.getPassword());
+            coll.insertOne(doc);
+            log.info("User with userId = " + u.getNif() + " added to the database");
+            return true;
+        }
+        else{
+            log.warn("A user with userId = " + u.getNif() + " is already in the database");
+            return false;
+        }
     }
+
 }
