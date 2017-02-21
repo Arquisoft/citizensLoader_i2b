@@ -32,7 +32,7 @@ class DocxWriter implements ReportWriter {
                 addTitle(user, paragraph);
                 XWPFRun run2 = addText(user, paragraph);
                 document.write(outputStream);
-                log.info("Exported correctly to docx format");
+                log.info("Exported user with userId = " + user.getNif() + " correctly to DOCX format");
             } catch (IOException e) {
                 log.error(e.getMessage(), e);
             } finally {
@@ -74,10 +74,10 @@ class DocxWriter implements ReportWriter {
         addLine(run, "Date of birth: " + user.getDateOfBirth() + ".");
         addLine(run, "NIF: " + user.getNif() + ".");
         addLine(run, "Nationality: " + user.getNationality() + ".");
-        addLine(run, "Addres: " + user.getAddress() + ".");
+        addLine(run, "Address: " + user.getAddress() + ".");
         run.addBreak();
-        addLine(run, "Your user name is your email: " + user.getEmail() + ".");
-        addLine(run, "Your password is: " + user.getUnencryptedPass() + ".");
+        addLine(run, "Your user name is your email: " + user.getEmail());
+        addLine(run, "Your password is: " + user.getUnencryptedPass());
         return run;
     }
 

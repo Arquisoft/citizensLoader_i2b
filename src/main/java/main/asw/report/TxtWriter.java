@@ -30,11 +30,11 @@ class TxtWriter implements ReportWriter {
                         + "Date of birth: " + user.getDateOfBirth() + ".\n"
                         + "NIF: " + user.getNif() + ".\n"
                         + "Nationality: " + user.getNationality() + ".\n"
-                        + "Addres: " + user.getAddress() + ".\n"
+                        + "Address: " + user.getAddress() + ".\n"
                         + "\n"
-                        + "Your user name is your email: " + user.getEmail() + ".\n"
-                        + "Your password is: " + user.getUnencryptedPass() + ".");
-                log.info("Exported correctly to txt format");
+                        + "Your user name is your email: " + user.getEmail() + "\n"
+                        + "Your password is: " + user.getUnencryptedPass());
+                log.info("Exported user with userId = " + user.getNif() + " correctly to TXT format");
             } catch (IOException e) {
                 log.error(e.getMessage(), e);
             } finally {

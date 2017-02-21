@@ -32,7 +32,7 @@ class MyPdfWriter implements ReportWriter {
                 PdfWriter.getInstance(document, fileOutputStream);
                 document.open();
                 addText(user, document);
-                log.info("Exported correctly to pdf format");
+                log.info("Exported user with userId = " + user.getNif() + " correctly to PDF format");
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             } finally {
@@ -63,7 +63,7 @@ class MyPdfWriter implements ReportWriter {
         document.add(new Paragraph("Date of birth: " + user.getDateOfBirth() + "."));
         document.add(new Paragraph("NIF: " + user.getNif() + "."));
         document.add(new Paragraph("Nationality: " + user.getNationality() + "."));
-        document.add(new Paragraph("Addres: " + user.getAddress() + "."));
+        document.add(new Paragraph("Address: " + user.getAddress() + "."));
         document.add(new Paragraph(" "));
         document.add(new Paragraph("Your user name is your email: " + user.getEmail() + "."));
         document.add(new Paragraph("Your password is: " + user.getUnencryptedPass() + "."));
