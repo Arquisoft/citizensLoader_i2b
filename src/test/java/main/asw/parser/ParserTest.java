@@ -33,32 +33,32 @@ public class ParserTest {
 
     private ParserImpl parser;
 
-    private static final String MONGO_HOST = "localhost";
-    private static final int MONGO_PORT = 27017;
-
-    private MongodExecutable mongodExe;
-    private MongodProcess mongod;
-    private MongoClient mongoClient;
-
-    /**
-     * Deploys an in-memory database for simple testing
-     *
-     * @throws Exception if any problem occurs trying to launch the DB
-     */
-    private void setupDb() throws Exception {
-        MongodStarter runtime = MongodStarter.getDefaultInstance();
-        mongodExe = runtime.prepare(new MongodConfig(Version.V2_0_5, MONGO_PORT, Network.localhostIsIPv6()));
-        mongod = mongodExe.start();
-        mongoClient = new MongoClient(MONGO_HOST, MONGO_PORT);
-    }
-
-    @After
-    public void tearDownDb() throws Exception {
-        if (mongod != null) {
-            mongod.stop();
-            mongodExe.stop();
-        }
-    }
+//    private static final String MONGO_HOST = "localhost";
+//    private static final int MONGO_PORT = 27017;
+//
+//    private MongodExecutable mongodExe;
+//    private MongodProcess mongod;
+//    private MongoClient mongoClient;
+//
+//    /**
+//     * Deploys an in-memory database for simple testing
+//     *
+//     * @throws Exception if any problem occurs trying to launch the DB
+//     */
+//    private void setupDb() throws Exception {
+//        MongodStarter runtime = MongodStarter.getDefaultInstance();
+//        mongodExe = runtime.prepare(new MongodConfig(Version.V2_0_5, MONGO_PORT, Network.localhostIsIPv6()));
+//        mongod = mongodExe.start();
+//        mongoClient = new MongoClient(MONGO_HOST, MONGO_PORT);
+//    }
+//
+//    @After
+//    public void tearDownDb() throws Exception {
+//        if (mongod != null) {
+//            mongod.stop();
+//            mongodExe.stop();
+//        }
+//    }
 
 
     @Test
@@ -108,17 +108,16 @@ public class ParserTest {
         assertEquals(0, parser.getUsers().size());
     }
 
-
-    @Test
-    public void testArchieveInsertion() throws Exception {
-        setupDb();
-        parser = ParserFactory.getParser(BASE_PATH + TEST_OK_FILE_NAME);
-        parser.readList();
-        parser.insert();
-        //We expect 1 because in that file all the rows have the same userId
-        assertEquals(1, mongoClient.getDatabase("aswdb").getCollection("user").count());
-        tearDownDb();
-    }
-
+/* Not needed. It's being tested on PersistenceTest class */
+//    @Test
+//    public void testArchieveInsertion() throws Exception {
+//        setupDb();
+//        parser = ParserFactory.getParser(BASE_PATH + TEST_OK_FILE_NAME);
+//        parser.readList();
+//        parser.insert();
+//        //We expect 1 because in that file all the rows have the same userId
+//        assertEquals(1, mongoClient.getDatabase("aswdb").getCollection("user").count());
+//        tearDownDb();
+//    }
 
 }
