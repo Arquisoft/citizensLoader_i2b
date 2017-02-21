@@ -1,9 +1,7 @@
-package main.asw;
+package main.asw.report;
 
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
-import main.asw.report.ReportFactory;
-import main.asw.report.ReportWriter;
 import main.asw.user.User;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -64,7 +62,7 @@ public class ReportWriterTest {
 
         lines = readerTxt(file3);
         assertTrue(lines[0].contains("Greetings: Angel Borré Santiago."));
-        assertTrue(lines[5].contains("Addres: Navia"));
+        assertTrue(lines[5].contains("Address: Navia"));
         assertTrue(lines[8].contains("Your password is: "));
 
         assertEquals(true, file.delete());
@@ -114,7 +112,7 @@ public class ReportWriterTest {
 
         lines = readerDocx(file3);
         assertTrue(lines[0].contains("Greetings: Angel Borré Santiago."));
-        assertTrue(lines[5].contains("Addres: Navia"));
+        assertTrue(lines[5].contains("Address: Navia"));
         assertTrue(lines[8].contains("Your password is: "));
 
 
@@ -169,7 +167,7 @@ public class ReportWriterTest {
 
         lines = readerPdf(filename3);
         assertTrue(lines[0].contains("Greetings: Angel Borré Santiago."));
-        assertTrue(lines[5].contains("Addres: Navia"));
+        assertTrue(lines[5].contains("Address: Navia"));
         assertTrue(lines[8].contains("Your password is: "));
 
         assertEquals(true, file.delete());

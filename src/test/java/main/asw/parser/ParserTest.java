@@ -115,7 +115,8 @@ public class ParserTest {
         parser = ParserFactory.getParser(BASE_PATH + TEST_OK_FILE_NAME);
         parser.readList();
         parser.insert();
-        assertEquals(20, mongoClient.getDatabase("aswdb").getCollection("user").count());
+        //We expect 1 because in that file all the rows have the same userId
+        assertEquals(1, mongoClient.getDatabase("aswdb").getCollection("user").count());
         tearDownDb();
     }
 
