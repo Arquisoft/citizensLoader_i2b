@@ -10,6 +10,7 @@ import de.flapdoodle.embed.mongo.config.MongodConfig;
 import de.flapdoodle.embed.mongo.distribution.Version;
 import de.flapdoodle.embed.process.runtime.Network;
 import main.asw.user.User;
+import org.bson.BsonDocument;
 import org.bson.Document;
 import org.junit.After;
 import org.junit.Before;
@@ -27,7 +28,7 @@ import static junit.framework.TestCase.assertEquals;
 public class MongoDBTest {
 
     private static final String MONGO_HOST = "localhost";
-    private static final int MONGO_PORT = 27777;
+    private static final int MONGO_PORT = 27017;
 //    private static final String IN_MEM_CONNECTION_URL = MONGO_HOST + ":" + MONGO_PORT;
 
     private MongodExecutable mongodExe;
@@ -41,9 +42,9 @@ public class MongoDBTest {
      */
     @Before
     public void setUp() throws Exception {
-        MongodStarter runtime = MongodStarter.getDefaultInstance();
-        mongodExe = runtime.prepare(new MongodConfig(Version.V2_0_5, MONGO_PORT, Network.localhostIsIPv6()));
-        mongod = mongodExe.start();
+        //MongodStarter runtime = MongodStarter.getDefaultInstance();
+        //mongodExe = runtime.prepare(new MongodConfig(Version.V2_0_5, MONGO_PORT, Network.localhostIsIPv6()));
+        //mongod = mongodExe.start();
         mongoClient = new MongoClient(MONGO_HOST, MONGO_PORT);
     }
 
@@ -54,10 +55,10 @@ public class MongoDBTest {
      */
     @After
     public void tearDown() throws Exception {
-        if (mongod != null) {
+        /*if (mongod != null) {
             mongod.stop();
             mongodExe.stop();
-        }
+        }*/
     }
 
     /**
@@ -66,6 +67,7 @@ public class MongoDBTest {
     @Test
     public void testUserInsertion() {
         MongoDatabase db = mongoClient.getDatabase("test");
+        db.getCollection("user").deleteMany(new BsonDocument());
         MongoCollection<Document> coll = db.getCollection("user");
         User u = new User("Miguel", "García", "mg@email.com", new Date(), "c/ street", "España", "71735454H");
         Document doc = new Document("name", u.getFirstName())
@@ -81,6 +83,8 @@ public class MongoDBTest {
         assertEquals(1, coll.count());
         assertEquals("Miguel", coll.find().first().get("name"));
         assertEquals(doc.toJson(), coll.find().first().toJson());
+
+        db.getCollection("user").deleteMany(new BsonDocument());
     }
 
 }
