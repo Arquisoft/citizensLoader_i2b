@@ -74,7 +74,6 @@ public class ParserTest {
         String baseEmail = "prueba";
         String baseStreet = "c/Prueba n0 1a";
         String baseCountry = "España";
-        String baseId = "71735454H";//01J
         parser.readList();
         assertEquals(20, parser.getUsers().size());
         for (int i = 0; i < parser.getUsers().size(); i++) {
@@ -85,7 +84,6 @@ public class ParserTest {
             assertEquals(baseEmail + index + "@prueba.es", user.getEmail());
             assertEquals(baseStreet, user.getAddress());
             assertEquals(baseCountry, user.getNationality());
-            assertEquals("71735454H", user.getNif());
         }
     }
 
