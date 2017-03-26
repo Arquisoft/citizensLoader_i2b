@@ -18,7 +18,7 @@ class UserDaoImpl implements UserDao {
 
     private static MongoClient mongoClient = new MongoClient("localhost", 27017);
     private static MongoDatabase db = mongoClient.getDatabase("aswdb");
-    private static MongoCollection<Document> coll = db.getCollection("user");
+    private static MongoCollection<Document> coll = db.getCollection("users");
 
     /**
      * Saves a given user in the database if there ins't already one with the same userId

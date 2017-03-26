@@ -106,7 +106,7 @@ public class ParserTest {
 //        parser.readList();
 //        parser.insert();
 //        //We expect 1 because in that file all the rows have the same userId
-//        assertEquals(1, mongoClient.getDatabase("aswdb").getCollection("user").count());
+//        assertEquals(1, mongoClient.getDatabase("aswdb").getCollection("users").count());
 //        tearDownDb();
 //    }
 

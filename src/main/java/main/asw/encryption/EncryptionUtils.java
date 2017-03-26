@@ -40,7 +40,7 @@ public class EncryptionUtils {
      */
     public String generatePassword() {
         int length = 15;
-        char[] possibleCharacters = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_=+[{]}\\|;:,<.>/?").toCharArray();
+        char[] possibleCharacters = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_").toCharArray();
         return RandomStringUtils.random(length, 0, possibleCharacters.length - 1, false, false, possibleCharacters, secureRnd);
     }
 

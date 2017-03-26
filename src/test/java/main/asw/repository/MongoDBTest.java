@@ -63,8 +63,8 @@ public class MongoDBTest {
     @Test
     public void testUserInsertion() {
         MongoDatabase db = mongoClient.getDatabase("test");
-        db.getCollection("user").deleteMany(new BsonDocument());
-        MongoCollection<Document> coll = db.getCollection("user");
+        db.getCollection("users").deleteMany(new BsonDocument());
+        MongoCollection<Document> coll = db.getCollection("users");
         User u = new User("Miguel", "García", "mg@email.com", new Date(), "c/ street", "España", "71735454H");
         Document doc = new Document("name", u.getFirstName())
                 .append("surname", u.getLastName())
@@ -80,7 +80,7 @@ public class MongoDBTest {
         assertEquals("Miguel", coll.find().first().get("name"));
         assertEquals(doc.toJson(), coll.find().first().toJson());
 
-        db.getCollection("user").deleteMany(new BsonDocument());
+        db.getCollection("users").deleteMany(new BsonDocument());
     }
 
 }

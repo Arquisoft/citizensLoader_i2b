@@ -34,7 +34,7 @@ public class PersistenceTest {
         dbUpdate = RepositoryFactory.getDBUpdate();
         mongoClient = new MongoClient("localhost", 27017);
         db = mongoClient.getDatabase("aswdb");
-        coll = db.getCollection("user");
+        coll = db.getCollection("users");
         users = new ArrayList<>();
     }
 
