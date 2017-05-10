@@ -16,9 +16,16 @@ class UserDaoImpl implements UserDao {
 
     private final static org.slf4j.Logger log = LoggerFactory.getLogger(UserDao.class);
 
-    private static MongoClient mongoClient = new MongoClient("localhost", 27017);
-    private static MongoDatabase db = mongoClient.getDatabase("aswdb");
-    private static MongoCollection<Document> coll = db.getCollection("users");
+    private MongoClient mongoClient = new MongoClient("localhost", 27017);
+    private MongoDatabase db = mongoClient.getDatabase("aswdb");
+    private MongoCollection<Document> coll = db.getCollection("users");
+
+
+    public UserDaoImpl(){
+        mongoClient = new MongoClient("localhost", 27017);
+        db = mongoClient.getDatabase("aswdb");
+        coll = db.getCollection("users");
+    }
 
     /**
      * Saves a given user in the database if there ins't already one with the same userId
@@ -45,6 +52,13 @@ class UserDaoImpl implements UserDao {
             log.warn("A user with userId = " + u.getNif() + " is already in the database");
             return false;
         }
+    }
+
+    @Override
+    public void setMongoHost(String host) {
+        mongoClient = new MongoClient(host, 27017);
+        db = mongoClient.getDatabase("aswdb");
+        coll = db.getCollection("users");
     }
 
 }

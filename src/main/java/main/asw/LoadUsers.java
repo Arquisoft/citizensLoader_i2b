@@ -2,6 +2,7 @@ package main.asw;
 
 import main.asw.parser.Parser;
 import main.asw.parser.ParserFactory;
+import main.asw.repository.PersistenceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +20,11 @@ public class LoadUsers {
     private final static Logger log = LoggerFactory.getLogger(LoadUsers.class);
 
     public static void main(String... args) {
-        if (args.length == 1) {
+        if (args.length == 2) {
             try {
+                PersistenceFactory.getUserDAO().setMongoHost(args[1]);
+
+
                 Parser parser = ParserFactory.getParser(args[0]);
                 parser.readList();
                 parser.insert();
@@ -35,7 +39,7 @@ public class LoadUsers {
     private static void printUsage() {
         System.out.println(
                 "Invalid parameters. You must only have:\n" +
-                "\t <xls path>"
+                "\t <xls path> \t <mongo host>"
         );
     }
 

@@ -15,4 +15,6 @@ public interface UserDao {
      *          false otherwise (if the user already exists in the DB)
      */
     boolean saveUser(User u);
+
+    void setMongoHost(String arg);
 }

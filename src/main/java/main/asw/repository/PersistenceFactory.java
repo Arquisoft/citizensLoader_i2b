@@ -3,10 +3,12 @@ package main.asw.repository;
 /**
  * Created by MIGUEL on 16/02/2017.
  */
-class PersistenceFactory {
+public class PersistenceFactory {
+
+    private static UserDao userDao = new UserDaoImpl();
 
     public static UserDao getUserDAO() {
-        return new UserDaoImpl();
+        return userDao;
     }
 
 }
